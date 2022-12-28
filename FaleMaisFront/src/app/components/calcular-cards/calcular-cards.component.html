@@ -1,0 +1,11 @@
+<nz-row
+    nzAlign="middle"
+    [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }"
+    nzType="flex"
+    nzJustify="center">
+    <nz-col
+        *ngFor="let calculo of calculos"
+        [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="6">
+        <app-card [card]="converterCalculoEmCard(calculo)"></app-card>
+    </nz-col>
+</nz-row>

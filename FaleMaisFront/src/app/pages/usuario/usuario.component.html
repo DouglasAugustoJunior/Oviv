@@ -1,0 +1,21 @@
+<nz-table
+    #usuarioTable
+    [nzData]="listaUsuarios"
+    [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data Criação</th>
+            <th>Nome</th>
+            <th>Autorização</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of usuarioTable.data">
+            <td>{{ data.id }}</td>
+            <td>{{ data.dataCriacao | date:'dd/MM/YYYY' }}</td>
+            <td>{{ data.nome }}</td>
+            <td>{{ data.autorizacao }}</td>
+        </tr>
+    </tbody>
+</nz-table>

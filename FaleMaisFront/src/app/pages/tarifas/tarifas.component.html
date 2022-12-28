@@ -1,0 +1,21 @@
+<nz-table
+    #tarifaTable
+    [nzData]="listaTarifas"
+    [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Valor/Min</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of tarifaTable.data">
+            <td>{{ data.id }}</td>
+            <td>{{ data.origem }}</td>
+            <td>{{ data.destino }}</td>
+            <td>{{ data.custoPorMin | currency:'R$' }}</td>
+        </tr>
+    </tbody>
+</nz-table>

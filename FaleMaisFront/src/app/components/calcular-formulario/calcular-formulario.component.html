@@ -1,0 +1,75 @@
+<nz-row
+    nzAlign="middle"
+    [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }"
+    nzType="flex"
+    nzJustify="center">
+    <nz-col [nzXs]="24" [nzSm]="24" [nzMd]="20" [nzLg]="16">
+        <form nz-form [nzLayout]="'inline'" [formGroup]="calcularForm" (ngSubmit)="calcular()">
+            <nz-row
+                >
+                <nz-col [nzXs]="24" [nzSm]="7">
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Selecione uma origem válida!">
+                            <nz-select
+                                nzMode="default"
+                                nzPlaceHolder="Selecione a origem"
+                                formControlName="origemId"
+                                nzAllowClear
+                                nzShowSearch
+                                nzServerSearch
+                                [nzAutoFocus]="true"
+                                (ngModelChange)="filtrarDestino()"
+                                (nzOnSearch)="filtrarOrigem($event)">
+                                <ng-container *ngFor="let origem of origemLista">
+                                    <nz-option *ngIf="!estaCarregando" [nzValue]="origem.id" [nzLabel]="origem.nome"></nz-option>
+                                </ng-container>
+                                <nz-option *ngIf="estaCarregando" nzDisabled nzCustomContent>
+                                    <i nz-icon nzType="loading" class="loading-icon"></i>
+                                    Carregando...
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col [nzXs]="24" [nzSm]="7">
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Selecione um destino válido!">
+                            <nz-select
+                                nzMode="default"
+                                nzPlaceHolder="Selecione o destino"
+                                formControlName="destinoId"
+                                nzAllowClear
+                                nzShowSearch
+                                nzServerSearch
+                                [nzDisabled]="origemIdInvalido">
+                                <ng-container *ngFor="let destino of destinoLista">
+                                    <nz-option *ngIf="!estaCarregando" [nzValue]="destino.id" [nzLabel]="destino.nome"></nz-option>
+                                </ng-container>
+                                <nz-option *ngIf="estaCarregando" nzDisabled nzCustomContent>
+                                    <i nz-icon nzType="loading" class="loading-icon"></i>
+                                    Carregando...
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col [nzXs]="24" [nzSm]="7">
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Digite uma quantidade válida!">
+                            <nz-input-group>
+                                <input formControlName="qtdeMin" nz-input type="number" min="0" placeholder="Quantidade de minutos" />
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col [nzXs]="24" [nzSm]="3">
+                    <nz-form-item>
+                        <nz-form-control>
+                            <button nz-button nzType="primary" [disabled]="!calcularForm.valid">Calcular</button>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+        </form>
+    </nz-col>
+</nz-row>

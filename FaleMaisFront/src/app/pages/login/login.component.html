@@ -1,0 +1,32 @@
+<div nz-row nzAlign="middle" nzJustify="center">
+    <div nz-col nzLg="14" nzMd="16" nzSm="16" nzXl="12">
+        <nz-card nzHoverable [nzBorderless]="true">
+            <div nz-row nzAlign="middle" nzJustify="center">
+                <div nz-col nzSpan="16">
+                    <h3>
+                        Preencha os dados para acessar a aplicação
+                    </h3>
+                </div>
+                <div nz-col nzSpan="16">
+                    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="enviarDados()">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Insira um usuário válido!">
+                                <nz-input-group nzPrefixIcon="user">
+                                    <input type="text" nz-input [autofocus]="true" formControlName="usuario" placeholder="Usuário" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Insira uma senha válida!">
+                                <nz-input-group nzPrefixIcon="lock">
+                                <input type="password" nz-input formControlName="senha" placeholder="Senha" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </nz-card>
+    </div>
+</div>

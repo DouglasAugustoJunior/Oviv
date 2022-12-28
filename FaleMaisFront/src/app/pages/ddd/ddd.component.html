@@ -1,0 +1,17 @@
+<nz-table
+    #dddTable
+    [nzData]="listaDDD"
+    [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>DDD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of dddTable.data">
+            <td>{{ data.id }}</td>
+            <td>{{ data.nome }}</td>
+        </tr>
+    </tbody>
+</nz-table>

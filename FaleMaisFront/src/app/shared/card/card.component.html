@@ -1,0 +1,13 @@
+<nz-card class="card">
+    <div nz-row nzType="flex" nzJustify="center">
+        <h1 nz-title>{{ card.valor }}</h1>
+    </div>
+    <h4>
+        <p class="nz-card-meta">
+            {{ card.descricao }}
+        </p>
+        <p *ngIf="card.subDescricao">
+            {{ card.subDescricao }}
+        </p>
+    </h4>
+</nz-card>
