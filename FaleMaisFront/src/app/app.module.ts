@@ -21,7 +21,7 @@ import { PlanoModule } from './pages/plano/plano.module'
 import { CalcularFormularioModule } from './components/calcular-formulario/calcular-formulario.module'
 import { CalcularCardsModule } from './components/calcular-cards/calcular-cards.module'
 import { CalcularValoresModule } from './components/calcular-valores/calcular-valores.module'
-import { PaginaNaoEncontradaModule } from './components/pagina-nao-encontrada/pagina-nao-encontrada.module'
+import { PaginaNaoEncontradaModule } from './components/pagina-nao-encontrada/pagina-nao-encontrada.module';
 
 registerLocaleData(pt)
 
