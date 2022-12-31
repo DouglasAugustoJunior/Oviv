@@ -78,6 +78,16 @@ app
     .Produces<List<CustoChamadaListagemDTO>>(StatusCodes.Status200OK);
 
 app
+    .MapPut(
+        "/tarifas",
+        (ICustoChamadaService _custoChamadaService, CustoChamadaAtualizarDTO dto) => _custoChamadaService.Atualizar(dto))
+    .WithName("PutTarifas")
+    .WithTags("Atualizar")
+    .Produces<string>(StatusCodes.Status401Unauthorized)
+    .Produces<List<string>>(StatusCodes.Status400BadRequest)
+    .Produces<string>(StatusCodes.Status200OK);
+
+app
     .MapGet(
         "/tarifasParaInput",
         (ICustoChamadaService _custoChamadaService) => _custoChamadaService.ListarParaInput())

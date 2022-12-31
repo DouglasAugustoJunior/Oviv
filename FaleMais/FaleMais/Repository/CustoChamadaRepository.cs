@@ -28,5 +28,16 @@ namespace FaleMais.Repository
             Context.CustoChamada
             .FirstOrDefault(custoChamada => custoChamada.DestinoId == calculos.DestinoId
                 && custoChamada.OrigemId == calculos.OrigemId);
+
+        public bool ValidarValorECombinacaoOrigemDestino(CustoChamadaAtualizarDTO dto)
+        {
+            var custoChamadaAtual = BuscarPorId(dto.Id);
+            if(custoChamadaAtual == null
+                || !Context.DDD.Any(_ => _.Id == dto.OrigemId)
+                || !Context.DDD.Any(_ => _.Id == dto.DestinoId)
+                || dto.ValorPorMin <= 0)
+                return false;
+            return true;
+        }
     }
 }

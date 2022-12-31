@@ -7,5 +7,6 @@ namespace FaleMais.Repository.Interface
     {
         List<CustoChamadaListagemDTO> ListarCustoComIncludes();
         CustoChamada? ObterCustoChamadaPorOrigemEDestino(CalculosDTO calculos);
+        bool ValidarValorECombinacaoOrigemDestino(CustoChamadaAtualizarDTO dto);
     }
 }

@@ -6,5 +6,6 @@ namespace FaleMais.Service.Interface
     {
         List<CustoChamadaListagemDTO> Listar();
         List<CustoChamadaDTO> ListarParaInput();
+        IResult Atualizar(CustoChamadaAtualizarDTO dto);
     }
 }
