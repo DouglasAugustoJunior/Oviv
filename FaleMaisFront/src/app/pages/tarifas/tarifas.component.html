@@ -4,6 +4,7 @@
     [nzFrontPagination]="false">
     <thead>
         <tr>
+            <th></th>
             <th>ID</th>
             <th>Origem</th>
             <th>Destino</th>
@@ -12,10 +13,72 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of tarifaTable.data">
+            <td nzAlign="center">
+                <a (click)="showModal(data)">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
             <td>{{ data.id }}</td>
             <td>{{ data.origem }}</td>
             <td>{{ data.destino }}</td>
-            <td>{{ data.custoPorMin | currency:'R$' }}</td>
+            <td>{{ data.valorPorMin | currency:'R$' }}</td>
         </tr>
     </tbody>
 </nz-table>
+
+<nz-modal
+    [(nzVisible)]="modalVisivel"
+    nzTitle="Editar"
+    (nzOnCancel)="cancel()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="form">
+            <nz-form-item>
+                <nz-form-label nzSm="8">ID</nz-form-label>
+                <nz-form-control nzSm="16">
+                    <input nz-input formControlName="id" readonly/>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired>Origem</nz-form-label>
+                <nz-form-control nzSm="16" nzErrorTip="Selecione uma origem válida!">
+                    <nz-select
+                        nzMode="default"
+                        nzPlaceHolder="Selecione a origem"
+                        formControlName="origemId"
+                        nzAllowClear
+                        nzShowSearch
+                        nzServerSearch>
+                        <nz-option *ngFor="let origem of listaDDDs" [nzValue]="origem.id" [nzLabel]="origem.nome"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired>Destino</nz-form-label>
+                <nz-form-control nzSm="16" nzErrorTip="Selecione um destino válido!">
+                    <nz-select
+                    nzMode="default"
+                    nzPlaceHolder="Selecione o destino"
+                    formControlName="destinoId"
+                    nzAllowClear
+                    nzShowSearch
+                    nzServerSearch>
+                    <nz-option *ngFor="let origem of listaDDDs" [nzValue]="origem.id" [nzLabel]="origem.nome"></nz-option>
+                </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired>Valor por minuto (R$)</nz-form-label>
+                <nz-form-control nzSm="16" nzHasFeedback [nzErrorTip]="valorPorMinErrorTpl">
+                    <input nz-input formControlName="valorPorMin" placeholder="Valor por minuto" type="number" />
+                    <ng-template #valorPorMinErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">Informe um valor válido</ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </ng-container>
+    <ng-container *nzModalFooter>
+        <button nz-button (click)="limpar($event)">Limpar</button>
+        <button nz-button nzType="primary" [disabled]="form.invalid" (click)="ok()">Salvar</button>
+    </ng-container>
+</nz-modal>

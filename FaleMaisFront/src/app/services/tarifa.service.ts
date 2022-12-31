@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 
 import { environment } from 'src/environments/environment'
+import { AtualizarTarifaDTO } from '../models/tarifa-atualizar-dto.model'
 import { TarifaInputDTO } from '../models/tarifa-input-dto.model'
 import { TarifaListagemDTO } from '../models/tarifa-listagem-dto.model'
 
@@ -18,4 +19,7 @@ export class TarifaService {
 
   obterTarifasParaInput = ():Observable<TarifaInputDTO[]> =>
     this.http.get<TarifaInputDTO[]>(`${environment.api}/tarifasParaInput`)
+
+  atualizar = (dto:AtualizarTarifaDTO): Observable<string> =>
+    this.http.put<string>(`${environment.api}/tarifas`, dto)
 }
