@@ -20,7 +20,7 @@ namespace FaleMais.Repository
                     Id = custo.Id,
                     Origem = custo.Origem.Nome,
                     Destino = custo.Destino.Nome,
-                    CustoPorMin = custo.ValorPorMin
+                    ValorPorMin = custo.ValorPorMin
                 })
                 .ToList();
 

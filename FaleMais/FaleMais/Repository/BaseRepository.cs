@@ -1,6 +1,7 @@
 ﻿using FaleMais.Domain;
 using FaleMais.Repository.Interface;
 using FaleMais.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace FaleMais.Repository
 {
@@ -33,7 +34,10 @@ namespace FaleMais.Repository
         }
 
         public TEntity? BuscarPorId(int id) =>
-            Context.Set<TEntity>().SingleOrDefault(entidade => entidade.Id == id);
+            Context
+                .Set<TEntity>()
+                .AsNoTracking()
+                .SingleOrDefault(entidade => entidade.Id == id);
 
         public List<TEntity> Listar() =>
             Context
