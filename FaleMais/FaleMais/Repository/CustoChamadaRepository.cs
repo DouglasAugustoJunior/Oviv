@@ -18,8 +18,8 @@ namespace FaleMais.Repository
                 .Select(custo => new CustoChamadaListagemDTO()
                 {
                     Id = custo.Id,
-                    Origem = custo.Origem.Nome,
-                    Destino = custo.Destino.Nome,
+                    Origem = custo.Origem != null ? custo.Origem.Nome : string.Empty,
+                    Destino = custo.Destino != null ? custo.Destino.Nome : string.Empty,
                     ValorPorMin = custo.ValorPorMin
                 })
                 .ToList();

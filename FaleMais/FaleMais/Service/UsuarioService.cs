@@ -1,4 +1,6 @@
-﻿using FaleMais.Domain.DTO;
+﻿using MiniValidation;
+using FaleMais.Domain.DTO;
+using FaleMais.Infrastructure;
 using FaleMais.Service.Interface;
 using FaleMais.Repository.Interface;
 
@@ -7,9 +9,20 @@ namespace FaleMais.Service
     public class UsuarioService: IUsuarioService
     {
         private readonly IUsuarioRepository _usuarioRepository;
+
         public UsuarioService(IUsuarioRepository usuarioRepository) =>
             _usuarioRepository = usuarioRepository;
-        
+
+        public IResult Atualizar(UsuarioAtualizarDTO dto)
+        {
+            if (!MiniValidator.TryValidate(dto, out var erros))
+                return Results.BadRequest(ValidacoesUtils.ObterErros(erros));
+            if (_usuarioRepository.BuscarPorId(dto.Id) == null)
+                return Results.BadRequest("Usuário não encontrado para atualizar!");
+            _usuarioRepository.Atualizar(dto.ToUsuario());
+            return Results.Ok("Atualizado com sucesso!");
+        }
+
         public List<UsuariosListagemDTO> Listar() =>
             _usuarioRepository
                 .Listar()

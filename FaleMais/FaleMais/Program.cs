@@ -79,6 +79,16 @@ app
     .Produces<List<UsuariosListagemDTO>>(StatusCodes.Status200OK);
 
 app
+    .MapPut(
+        "/usuarios",
+        (IUsuarioService _usuarioService, UsuarioAtualizarDTO dto) => _usuarioService.Atualizar(dto))
+    .WithName("PutUsuario")
+    .WithTags("Atualizar")
+    .Produces<string>(StatusCodes.Status401Unauthorized)
+    .Produces<List<string>>(StatusCodes.Status400BadRequest)
+    .Produces<string>(StatusCodes.Status200OK);
+
+app
     .MapGet(
         "/tarifas",
         (ICustoChamadaService _custoChamadaService) => _custoChamadaService.Listar())
@@ -91,7 +101,7 @@ app
     .MapPut(
         "/tarifas",
         (ICustoChamadaService _custoChamadaService, CustoChamadaAtualizarDTO dto) => _custoChamadaService.Atualizar(dto))
-    .WithName("PutTarifas")
+    .WithName("PutTarifa")
     .WithTags("Atualizar")
     .Produces<string>(StatusCodes.Status401Unauthorized)
     .Produces<List<string>>(StatusCodes.Status400BadRequest)
