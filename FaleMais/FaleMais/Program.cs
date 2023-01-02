@@ -60,6 +60,16 @@ app
     .Produces<List<DDDListagemDTO>>(StatusCodes.Status200OK);
 
 app
+    .MapPost(
+        "/ddd",
+        (IDDDService _dddService, DDDCadastrarDTO ddd) => _dddService.Cadastrar(ddd))
+    .WithName("PostDDD")
+    .WithTags("Cadastrar")
+    .Produces<string>(StatusCodes.Status401Unauthorized)
+    .Produces<List<string>>(StatusCodes.Status400BadRequest)
+    .Produces<string>(StatusCodes.Status200OK);
+
+app
     .MapPut(
         "/ddd",
         (IDDDService _dddService, DDDAtualizarDTO dto) => _dddService.Atualizar(dto))

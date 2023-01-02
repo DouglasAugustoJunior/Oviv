@@ -10,6 +10,9 @@ namespace FaleMais.Repository
         public UsuarioRepository(IFaleMaisDbContext context): base(context) { }
 
         public Usuario? EfetuarLogin(LoginDTO login) =>
-            Context.Usuario.FirstOrDefault(usuario => usuario.Nome.Equals(login.Usuario) && usuario.Senha.Equals(login.Senha));
+            Context.Usuario
+                .FirstOrDefault(usuario => usuario.Nome.Equals(login.Usuario)
+                    && usuario.Senha.Equals(login.Senha)
+                    && !usuario.DataDelecao.HasValue);
     }
 }

@@ -14,6 +14,16 @@ namespace FaleMais.Service
         public DDDService(IDDDRepository dddRepository): base(dddRepository) =>
             _dddRepository = dddRepository;
 
+        public IResult Cadastrar(DDDCadastrarDTO dto)
+        {
+            if(string.IsNullOrEmpty(dto.DDD) || !int.TryParse(dto.DDD, out int _))
+                return Results.BadRequest("Informe um DDD válido");
+            if(_dddRepository.VerificarSeJaExiste(dto.DDD))
+                return Results.BadRequest("DDD informado já existe");
+            _dddRepository.Cadastrar(new DDD(dto.DDD));
+            return Results.Ok("Cadastrado com sucesso!");
+        }
+
         public IResult Atualizar(DDDAtualizarDTO dto)
         {
             if (!MiniValidator.TryValidate(dto, out var erros))

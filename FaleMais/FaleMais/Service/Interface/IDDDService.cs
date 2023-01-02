@@ -7,5 +7,6 @@ namespace FaleMais.Service.Interface
     {
         List<DDDListagemDTO> Listar();
         IResult Atualizar(DDDAtualizarDTO dto);
+        IResult Cadastrar(DDDCadastrarDTO dto);
     }
 }
