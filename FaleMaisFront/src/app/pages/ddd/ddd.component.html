@@ -10,14 +10,23 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of dddTable.data">
+        <tr *ngFor="let ddd of dddTable.data">
             <td nzAlign="center">
-                <a (click)="showModal(data)">
-                    <i nz-icon nzType="edit" nzTheme="outline"></i>
-                </a>
+                <nz-row nzGutter="32">
+                    <nz-col>
+                        <a (click)="showModal(ddd)">
+                            <i nz-icon nzType="edit" nzTheme="outline"></i>
+                        </a>
+                    </nz-col>
+                    <nz-col>
+                        <a (click)="modalDeletar(ddd)">
+                            <i nz-icon nzType="delete" nzTheme="outline"></i>
+                        </a>
+                    </nz-col>
+                </nz-row>
             </td>
-            <td>{{ data.id }}</td>
-            <td>{{ data.nome }}</td>
+            <td>{{ ddd.id }}</td>
+            <td>{{ ddd.nome }}</td>
         </tr>
     </tbody>
 </nz-table>

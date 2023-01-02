@@ -1,7 +1,8 @@
-import { IListagemUtils } from './../../shared/utils/IListagemUtils';
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
+import { NzModalService } from 'ng-zorro-antd/modal'
 
+import { IListagemUtils } from './../../shared/utils/IListagemUtils'
 import { DDDListagemDTO } from 'src/app/models/ddd-listagem-dto.model'
 import { TarifaListagemDTO } from 'src/app/models/tarifa-listagem-dto.model'
 import { DddService } from 'src/app/services/ddd.service'
@@ -20,6 +21,7 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
 
   constructor(
     private fb:FormBuilder,
+    private modalService: NzModalService,
     private tarifaService: TarifaService,
     private dddService: DddService) {
       super()
@@ -64,6 +66,26 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
       })
     }else
       destacarCamposInvalidos(this.form)
+  }
+
+  modalDeletar(tarifa:TarifaListagemDTO): void {
+    this.modalService.create({
+      nzTitle: 'Deletar',
+      nzContent: `Deseja realmente excluir a tarifa de Origem ${tarifa.origem} e Destino ${tarifa.destino}?`,
+      nzOkText: 'Excluir',
+      nzCancelText: 'Cancelar',
+      nzMaskClosable: false,
+      nzClosable: false,
+      nzOnOk: () => this.deletar(tarifa.id),
+      nzOnCancel: () => this.cancel()
+    })
+  }
+
+  private deletar(id: number): void {
+    this.tarifaService.deletar(id).subscribe(() => {
+      this.obterTarifas()
+      this.modalVisivel = false
+    })
   }
 
 }

@@ -12,16 +12,25 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of usuarioTable.data">
+        <tr *ngFor="let usuario of usuarioTable.data">
             <td nzAlign="center">
-                <a (click)="showModal(data)">
-                    <i nz-icon nzType="edit" nzTheme="outline"></i>
-                </a>
+                <nz-row nzGutter="32">
+                    <nz-col>
+                        <a (click)="showModal(usuario)">
+                            <i nz-icon nzType="edit" nzTheme="outline"></i>
+                        </a>
+                    </nz-col>
+                    <nz-col>
+                        <a (click)="modalDeletar(usuario)">
+                            <i nz-icon nzType="delete" nzTheme="outline"></i>
+                        </a>
+                    </nz-col>
+                </nz-row>
             </td>
-            <td>{{ data.id }}</td>
-            <td>{{ data.dataCriacao | date:'dd/MM/YYYY' }}</td>
-            <td>{{ data.nome }}</td>
-            <td>{{ data.autorizacao }}</td>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.dataCriacao | date:'dd/MM/YYYY' }}</td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.autorizacao }}</td>
         </tr>
     </tbody>
 </nz-table>

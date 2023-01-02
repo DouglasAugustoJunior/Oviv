@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
+import { NzModalService } from 'ng-zorro-antd/modal'
 
 import { UsuarioListagemDTO } from 'src/app/models/usuario-listagem-dto.model'
 import { UsuarioService } from 'src/app/services/usuario.service'
@@ -17,6 +18,7 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
 
   constructor(
     private fb:FormBuilder,
+    private modalService: NzModalService,
     private usuarioService: UsuarioService) {
     super()
     this.form = this.fb.group({
@@ -50,6 +52,26 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
       })
     }else
       destacarCamposInvalidos(this.form)
+  }
+
+  modalDeletar(usuario:UsuarioListagemDTO): void {
+    this.modalService.create({
+      nzTitle: 'Deletar',
+      nzContent: `Deseja realmente excluir o usuário ${usuario.nome}?`,
+      nzOkText: 'Excluir',
+      nzCancelText: 'Cancelar',
+      nzMaskClosable: false,
+      nzClosable: false,
+      nzOnOk: () => this.deletar(usuario.id),
+      nzOnCancel: () => this.cancel()
+    })
+  }
+
+  private deletar(id: number): void {
+    this.usuarioService.deletar(id).subscribe(() => {
+      this.obterUsuarios()
+      this.modalVisivel = false
+    })
   }
 
 }

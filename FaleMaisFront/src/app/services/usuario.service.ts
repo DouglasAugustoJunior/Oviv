@@ -17,4 +17,7 @@ export class UsuarioService {
 
   atualizar = (dto:UsuarioListagemDTO): Observable<string> =>
     this.http.put<string>(`${environment.api}/usuarios`, dto)
+
+  deletar = (id: number) : Observable<string> =>
+    this.http.delete<string>(`${environment.api}/usuarios/${id}`)
 }

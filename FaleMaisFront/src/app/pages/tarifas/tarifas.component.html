@@ -12,16 +12,25 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of tarifaTable.data">
+        <tr *ngFor="let tarifa of tarifaTable.data">
             <td nzAlign="center">
-                <a (click)="showModal(data)">
-                    <i nz-icon nzType="edit" nzTheme="outline"></i>
-                </a>
+                <nz-row nzGutter="32">
+                    <nz-col>
+                        <a (click)="showModal(tarifa)">
+                            <i nz-icon nzType="edit" nzTheme="outline"></i>
+                        </a>
+                    </nz-col>
+                    <nz-col>
+                        <a (click)="modalDeletar(tarifa)">
+                            <i nz-icon nzType="delete" nzTheme="outline"></i>
+                        </a>
+                    </nz-col>
+                </nz-row>
             </td>
-            <td>{{ data.id }}</td>
-            <td>{{ data.origem }}</td>
-            <td>{{ data.destino }}</td>
-            <td>{{ data.valorPorMin | currency:'R$' }}</td>
+            <td>{{ tarifa.id }}</td>
+            <td>{{ tarifa.origem }}</td>
+            <td>{{ tarifa.destino }}</td>
+            <td>{{ tarifa.valorPorMin | currency:'R$' }}</td>
         </tr>
     </tbody>
 </nz-table>

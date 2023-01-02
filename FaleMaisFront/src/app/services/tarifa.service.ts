@@ -22,4 +22,7 @@ export class TarifaService {
 
   atualizar = (dto:AtualizarTarifaDTO): Observable<string> =>
     this.http.put<string>(`${environment.api}/tarifas`, dto)
+
+  deletar = (id: number) : Observable<string> =>
+    this.http.delete<string>(`${environment.api}/tarifas/${id}`)
 }

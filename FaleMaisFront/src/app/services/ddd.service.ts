@@ -18,4 +18,7 @@ export class DddService {
 
   atualizar = (dto:AtualizarDDDDTO): Observable<string> =>
     this.http.put<string>(`${environment.api}/ddd`, dto)
+
+  deletar = (id: number) : Observable<string> =>
+    this.http.delete<string>(`${environment.api}/ddd/${id}`)
 }

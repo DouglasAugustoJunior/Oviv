@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
+import { NzModalService } from 'ng-zorro-antd/modal'
 
 import { DDDListagemDTO } from 'src/app/models/ddd-listagem-dto.model'
 import { DddService } from 'src/app/services/ddd.service'
@@ -17,6 +18,7 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
   
   constructor(
     private fb:FormBuilder,
+    private modalService: NzModalService,
     private dddService: DddService) {
       super()
       this.form = this.fb.group({
@@ -46,6 +48,26 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
       })
     }else
       destacarCamposInvalidos(this.form)
+  }
+
+  modalDeletar(ddd:DDDListagemDTO): void {
+    this.modalService.create({
+      nzTitle: 'Deletar',
+      nzContent: `Deseja realmente excluir o DDD ${ddd.nome}?`,
+      nzOkText: 'Excluir',
+      nzCancelText: 'Cancelar',
+      nzMaskClosable: false,
+      nzClosable: false,
+      nzOnOk: () => this.deletar(ddd.id),
+      nzOnCancel: () => this.cancel()
+    })
+  }
+
+  private deletar(id: number): void {
+    this.dddService.deletar(id).subscribe(() => {
+      this.obterDDDs()
+      this.modalVisivel = false
+    })
   }
 
 }
