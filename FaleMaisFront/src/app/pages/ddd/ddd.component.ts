@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
-import { NzNotificationService } from 'ng-zorro-antd/notification'
 
 import { DDDListagemDTO } from 'src/app/models/ddd-listagem-dto.model'
 import { DddService } from 'src/app/services/ddd.service'
@@ -19,7 +18,6 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
   
   constructor(
     private fb:FormBuilder,
-    private notificationService: NzNotificationService,
     private dddService: DddService) {
       super()
       this.form = this.fb.group({
@@ -44,8 +42,7 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
 
   ok(): void {
     if(this.form.valid){
-      this.dddService.atualizar(this.form.value).subscribe(resposta => {
-        this.notificationService.success("Sucesso",resposta)
+      this.dddService.atualizar(this.form.value).subscribe(() => {
         this.obterDDDs()
         this.modalVisivel = false
       })

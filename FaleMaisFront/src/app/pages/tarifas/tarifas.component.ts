@@ -1,7 +1,6 @@
 import { IListagemUtils } from './../../shared/utils/IListagemUtils';
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
-import { NzNotificationService } from 'ng-zorro-antd/notification'
 
 import { DDDListagemDTO } from 'src/app/models/ddd-listagem-dto.model'
 import { TarifaListagemDTO } from 'src/app/models/tarifa-listagem-dto.model'
@@ -22,7 +21,6 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
 
   constructor(
     private fb:FormBuilder,
-    private notificationService: NzNotificationService,
     private tarifaService: TarifaService,
     private dddService: DddService) {
       super()
@@ -62,8 +60,7 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
 
   ok(): void {
     if(this.form.valid){
-      this.tarifaService.atualizar(this.form.value).subscribe(resposta => {
-        this.notificationService.success("Sucesso",resposta)
+      this.tarifaService.atualizar(this.form.value).subscribe(() => {
         this.obterTarifas()
         this.modalVisivel = false
       })

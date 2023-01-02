@@ -4,9 +4,10 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpStatusCode,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpEventType
 } from '@angular/common/http'
-import { catchError, throwError } from 'rxjs'
+import { catchError, tap, throwError } from 'rxjs'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 
 import { AutenticacaoService } from '../services/autenticacao.service'
@@ -29,7 +30,15 @@ export class RequisicoesInterceptor implements HttpInterceptor {
       : request
     return next
       .handle(handleRequest)
-      .pipe(catchError(this.validarErro()))
+      .pipe(
+        tap(retorno => {
+          if(retorno.type == HttpEventType.Response && (typeof retorno.body).includes('string'))
+            this.notificationService.success(
+              'Sucesso',
+              `${retorno.body}`
+            )
+        }),
+        catchError(this.validarErro()))
   }
 
   private validarErro = () => (erro:any) => {
