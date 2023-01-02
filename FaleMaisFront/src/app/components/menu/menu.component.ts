@@ -17,6 +17,6 @@ export class MenuComponent {
     this.autenticacaoService.deslogar()
 
   get EhUsuarioAdministrador():boolean {
-    return this.autenticacaoService.obterAutorizacaoUsuarioLogado == 'Administrador'
+    return this.autenticacaoService.EhUsuarioAdministrador
   }
 }
