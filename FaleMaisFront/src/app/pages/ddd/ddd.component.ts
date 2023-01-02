@@ -15,7 +15,7 @@ import { ListagemUtils } from 'src/app/shared/utils/ListagemUtils'
 export class DDDComponent extends ListagemUtils implements IListagemUtils, OnInit {
 
   listaDDD: DDDListagemDTO[] = []
-  
+
   constructor(
     private fb:FormBuilder,
     private modalService: NzModalService,
@@ -25,7 +25,7 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
         id: [null, []],
         nome: ['', [ Validators.required ]]
       })
-    }
+  }
 
   ngOnInit(): void {
     this.obterDDDs()
@@ -40,7 +40,21 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
     this.modalVisivel = true
   }
 
-  ok(): void {
+  modalCadastrar(): void {
+    this.modalVisivel = true
+  }
+
+  cadastrar(): void {
+    if(this.form.valid){
+      this.dddService.cadastrar({ddd: this.form.controls['nome'].value}).subscribe(() => {
+        this.obterDDDs()
+        this.modalVisivel = false
+      })
+    }else
+      destacarCamposInvalidos(this.form)
+  }
+
+  salvar(): void {
     if(this.form.valid){
       this.dddService.atualizar(this.form.value).subscribe(() => {
         this.obterDDDs()

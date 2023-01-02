@@ -58,7 +58,11 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
     this.modalVisivel = true
   }
 
-  ok(): void {
+  cadastrar(): void {
+    throw new Error('Method not implemented.')
+  }
+
+  salvar(): void {
     if(this.form.valid){
       this.tarifaService.atualizar(this.form.value).subscribe(() => {
         this.obterTarifas()

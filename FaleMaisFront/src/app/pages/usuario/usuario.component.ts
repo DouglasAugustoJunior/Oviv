@@ -44,7 +44,11 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
     this.modalVisivel = true
   }
 
-  ok(): void {
+  cadastrar(): void {
+    throw new Error('Method not implemented.')
+  }
+
+  salvar(): void {
     if(this.form.valid){
       this.usuarioService.atualizar(this.form.value).subscribe(() => {
         this.obterUsuarios()

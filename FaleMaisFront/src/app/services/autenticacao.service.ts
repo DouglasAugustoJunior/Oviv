@@ -54,4 +54,8 @@ export class AutenticacaoService {
   get estaLogado(): boolean {
     return localStorage.getItem(this.tokenLocalStorageUsuario) ? true : false
   }
+
+  get EhUsuarioAdministrador():boolean {
+    return this.obterAutorizacaoUsuarioLogado == 'Administrador'
+  }
 }

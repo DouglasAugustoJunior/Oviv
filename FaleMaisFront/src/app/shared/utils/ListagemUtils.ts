@@ -7,6 +7,7 @@ export class ListagemUtils {
     constructor(){}
 
     cancel(): void {
+        this.form.reset()
         this.modalVisivel = false
     }
 

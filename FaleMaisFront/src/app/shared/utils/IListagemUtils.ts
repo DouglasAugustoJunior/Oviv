@@ -1,4 +1,5 @@
 export interface IListagemUtils {
-    ok():void
+    salvar():void
+    cadastrar():void
     showModal(ddd: any): void
 }
