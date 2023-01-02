@@ -13,6 +13,6 @@ namespace FaleMais.Domain
         public DDD? Destino { get; set; }
 
         [Required]
-        public decimal ValorPorMin { get; set; }
+        public double ValorPorMin { get; set; }
     }
 }

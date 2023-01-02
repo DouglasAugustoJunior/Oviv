@@ -3,7 +3,7 @@
     public class ResultadoCalculoDTO
     {
         public string Plano { get; set; }
-        public decimal TotalPlano { get; set; }
-        public decimal TotalSemPlano { get; set; }
+        public double TotalPlano { get; set; }
+        public double TotalSemPlano { get; set; }
     }
 }

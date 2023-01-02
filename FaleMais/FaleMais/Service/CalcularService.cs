@@ -38,10 +38,10 @@ namespace FaleMais.Service
             return Results.Ok(planosDisponiveis);
         }
 
-        public static decimal CalcularTotalPlano(int qtdeMinutos, int minutosGratuitos, decimal valorPorMin) =>
-            qtdeMinutos <= minutosGratuitos ? 0 : (qtdeMinutos - minutosGratuitos) * (valorPorMin * 1.1m);
+        public static double CalcularTotalPlano(int qtdeMinutos, int minutosGratuitos, double valorPorMin) =>
+            qtdeMinutos <= minutosGratuitos ? 0 : (qtdeMinutos - minutosGratuitos) * (valorPorMin * 1.1);
 
-        public static decimal CalcularTotalSemPlano(int qtdeMinutos, decimal valorPorMin) =>
+        public static double CalcularTotalSemPlano(int qtdeMinutos, double valorPorMin) =>
             qtdeMinutos * valorPorMin;
     }
 }
