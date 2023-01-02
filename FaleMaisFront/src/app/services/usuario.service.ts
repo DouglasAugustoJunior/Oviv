@@ -14,4 +14,7 @@ export class UsuarioService {
 
   obterUsuarios = ():Observable<UsuarioListagemDTO[]> =>
     this.http.get<UsuarioListagemDTO[]>(`${environment.api}/usuarios`)
+
+  atualizar = (dto:UsuarioListagemDTO): Observable<string> =>
+    this.http.put<string>(`${environment.api}/usuarios`, dto)
 }

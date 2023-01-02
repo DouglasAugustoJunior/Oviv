@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common'
 import { NzTableModule } from 'ng-zorro-antd/table'
 
 import { NzModalModule } from 'ng-zorro-antd/modal'
-import { NzSelectModule } from 'ng-zorro-antd/select'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { ReactiveFormsModule } from '@angular/forms'
@@ -23,8 +22,7 @@ import { IconsProviderModule } from 'src/app/components/menu/icons-provider.modu
     NzFormModule,
     NzTableModule,
     IconsProviderModule,
-    NzModalModule,
-    NzSelectModule
+    NzModalModule
   ],
   exports: [
     DDDComponent

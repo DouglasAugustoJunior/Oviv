@@ -56,14 +56,14 @@
                 <nz-form-label nzSm="8" nzRequired>Destino</nz-form-label>
                 <nz-form-control nzSm="16" nzErrorTip="Selecione um destino válido!">
                     <nz-select
-                    nzMode="default"
-                    nzPlaceHolder="Selecione o destino"
-                    formControlName="destinoId"
-                    nzAllowClear
-                    nzShowSearch
-                    nzServerSearch>
-                    <nz-option *ngFor="let origem of listaDDDs" [nzValue]="origem.id" [nzLabel]="origem.nome"></nz-option>
-                </nz-select>
+                        nzMode="default"
+                        nzPlaceHolder="Selecione o destino"
+                        formControlName="destinoId"
+                        nzAllowClear
+                        nzShowSearch
+                        nzServerSearch>
+                        <nz-option *ngFor="let origem of listaDDDs" [nzValue]="origem.id" [nzLabel]="origem.nome"></nz-option>
+                    </nz-select>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>

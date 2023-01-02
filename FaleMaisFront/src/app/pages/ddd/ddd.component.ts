@@ -14,7 +14,6 @@ import { ListagemUtils } from 'src/app/shared/utils/ListagemUtils'
 export class DDDComponent extends ListagemUtils implements IListagemUtils, OnInit {
 
   listaDDD: DDDListagemDTO[] = []
-  dddParaEdicao!: DDDListagemDTO
   
   constructor(
     private fb:FormBuilder,
@@ -35,7 +34,6 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
   }
 
   showModal(ddd: DDDListagemDTO): void {
-    this.dddParaEdicao = ddd
     this.form.patchValue(ddd)
     this.modalVisivel = true
   }

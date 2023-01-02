@@ -16,7 +16,6 @@ import { ListagemUtils } from 'src/app/shared/utils/ListagemUtils'
 export class TarifasComponent extends ListagemUtils implements IListagemUtils, OnInit {
 
   listaTarifas: TarifaListagemDTO[] = []
-  tarifaParaEdicao!: TarifaListagemDTO
   listaDDDs: DDDListagemDTO[] = []
 
   constructor(
@@ -49,11 +48,10 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
   }
 
   showModal(tarifa: TarifaListagemDTO): void {
-    this.tarifaParaEdicao = tarifa
     this.form.patchValue({
       ...tarifa,
-      origemId: this.obterDDDEdicao(this.tarifaParaEdicao?.origem),
-      destinoId: this.obterDDDEdicao(this.tarifaParaEdicao?.destino)
+      origemId: this.obterDDDEdicao(tarifa?.origem),
+      destinoId: this.obterDDDEdicao(tarifa?.destino)
     })
     this.modalVisivel = true
   }

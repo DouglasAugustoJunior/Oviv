@@ -4,6 +4,7 @@
     [nzFrontPagination]="false">
     <thead>
         <tr>
+            <th></th>
             <th>ID</th>
             <th>Data Criação</th>
             <th>Nome</th>
@@ -12,6 +13,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of usuarioTable.data">
+            <td nzAlign="center">
+                <a (click)="showModal(data)">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
             <td>{{ data.id }}</td>
             <td>{{ data.dataCriacao | date:'dd/MM/YYYY' }}</td>
             <td>{{ data.nome }}</td>
@@ -19,3 +25,60 @@
         </tr>
     </tbody>
 </nz-table>
+
+<nz-modal
+    [(nzVisible)]="modalVisivel"
+    nzTitle="Editar"
+    (nzOnCancel)="cancel()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="form">
+            <nz-form-item>
+                <nz-form-label nzSm="8">ID</nz-form-label>
+                <nz-form-control nzSm="16">
+                    <input nz-input formControlName="id" readonly/>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired>Nome</nz-form-label>
+                <nz-form-control nzSm="16" nzHasFeedback [nzErrorTip]="nomeErrorTpl">
+                    <input nz-input formControlName="nome" placeholder="Nome" type="text" />
+                    <ng-template #nomeErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">Informe um valor válido</ng-container>
+                        <ng-container *ngIf="control.hasError('minlength')">Tamanho mínimo 3</ng-container>
+                        <ng-container *ngIf="control.hasError('maxlength')">Tamanho máximo 100</ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired>Senha</nz-form-label>
+                <nz-form-control nzSm="16" nzHasFeedback [nzErrorTip]="senhaErrorTpl">
+                    <input nz-input formControlName="senha" placeholder="Senha" type="password" />
+                    <ng-template #senhaErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">Informe um valor válido</ng-container>
+                        <ng-container *ngIf="control.hasError('minlength')">Tamanho mínimo 8</ng-container>
+                        <ng-container *ngIf="control.hasError('maxlength')">Tamanho máximo 12</ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired>Autorização</nz-form-label>
+                <nz-form-control nzSm="16" nzErrorTip="Selecione uma autorização válida!">
+                    <nz-select
+                        nzMode="default"
+                        nzPlaceHolder="Selecione a autorização"
+                        formControlName="autorizacao"
+                        nzAllowClear
+                        nzShowSearch
+                        nzServerSearch>
+                        <nz-option nzValue="Administrador" nzLabel="Administrador"></nz-option>
+                        <nz-option nzValue="Cliente" nzLabel="Cliente"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </ng-container>
+    <ng-container *nzModalFooter>
+        <button nz-button (click)="limpar($event)">Limpar</button>
+        <button nz-button nzType="primary" [disabled]="form.invalid" (click)="ok()">Salvar</button>
+    </ng-container>
+</nz-modal>
