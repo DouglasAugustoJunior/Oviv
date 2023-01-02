@@ -71,22 +71,22 @@ namespace FaleMaisTestes.ServiceTestes
         }
         
         [Theory]
-        [InlineData(10,30,1.9d,0)]
-        [InlineData(30,30,1.9d,0)]
-        [InlineData(31,30,1.9d,2.09d)]
-        [InlineData(60,30,1.9d,62.7d)]
-        public void CalcularTotalPlano_QuandoChamado_DeveRetornarCalculoCorreto(int qtdeMinutos, int minutosGratuitos, decimal valorPorMin, decimal resultadoEsperado)
+        [InlineData(10,30,1.9,0)]
+        [InlineData(30,30,1.9,0)]
+        [InlineData(31,30,1.9,2.09)]
+        [InlineData(60,30,1.9,62.7)]
+        public void CalcularTotalPlano_QuandoChamado_DeveRetornarCalculoCorreto(int qtdeMinutos, int minutosGratuitos, double valorPorMin, double resultadoEsperado)
         {
             // Act
             var totalPlano = CalcularService.CalcularTotalPlano(qtdeMinutos,minutosGratuitos,valorPorMin);
             // Arrange
-            Assert.Equal(resultadoEsperado, totalPlano);
+            Assert.Equal(resultadoEsperado, Math.Round(totalPlano,2));
         }
         
         [Theory]
         [InlineData(10,1.9d,19)]
         [InlineData(0,1.9d,0)]
-        public void CalcularTotalSemPlano_QuandoChamado_DeveRetornarCalculoCorreto(int qtdeMinutos, decimal valorPorMin, decimal resultadoEsperado)
+        public void CalcularTotalSemPlano_QuandoChamado_DeveRetornarCalculoCorreto(int qtdeMinutos, double valorPorMin, double resultadoEsperado)
         {
             // Act
             var totalSemPlano = CalcularService.CalcularTotalSemPlano(qtdeMinutos,valorPorMin);

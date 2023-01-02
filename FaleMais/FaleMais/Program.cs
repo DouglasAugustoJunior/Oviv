@@ -18,7 +18,9 @@ var configuracaoAutenticacao = new ConfiguracaoAutenticacao
 builder.Services.AddSingleton<IConfiguracaoAutenticacao>(configuracaoAutenticacao);
 builder.Services.AddDbContext<IFaleMaisDbContext, FaleMaisDbContext>();
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IDDDRepository, DDDRepository>();
 builder.Services.AddScoped<ICustoChamadaRepository, CustoChamadaRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
@@ -68,6 +70,16 @@ app
     .Produces<string>(StatusCodes.Status200OK);
 
 app
+    .MapDelete(
+        "/ddd/{id}",
+        (IDDDService _dddService, int id) => _dddService.Deletar(id))
+    .WithName("DeleteDDD")
+    .WithTags("Deletar")
+    .Produces<string>(StatusCodes.Status401Unauthorized)
+    .Produces<List<string>>(StatusCodes.Status400BadRequest)
+    .Produces<string>(StatusCodes.Status200OK);
+
+app
     .MapGet(
         "/usuarios",
         (IUsuarioService _usuarioService) => _usuarioService.Listar())
@@ -89,6 +101,16 @@ app
     .Produces<string>(StatusCodes.Status200OK);
 
 app
+    .MapDelete(
+        "/usuarios/{id}",
+        (IUsuarioService _usuarioService, int id) => _usuarioService.Deletar(id))
+    .WithName("DeleteUsuario")
+    .WithTags("Deletar")
+    .Produces<string>(StatusCodes.Status401Unauthorized)
+    .Produces<List<string>>(StatusCodes.Status400BadRequest)
+    .Produces<string>(StatusCodes.Status200OK);
+
+app
     .MapGet(
         "/tarifas",
         (ICustoChamadaService _custoChamadaService) => _custoChamadaService.Listar())
@@ -103,6 +125,16 @@ app
         (ICustoChamadaService _custoChamadaService, CustoChamadaAtualizarDTO dto) => _custoChamadaService.Atualizar(dto))
     .WithName("PutTarifa")
     .WithTags("Atualizar")
+    .Produces<string>(StatusCodes.Status401Unauthorized)
+    .Produces<List<string>>(StatusCodes.Status400BadRequest)
+    .Produces<string>(StatusCodes.Status200OK);
+
+app
+    .MapDelete(
+        "/tarifas/{id}",
+        (ICustoChamadaService _custoChamadaService, int id) => _custoChamadaService.Deletar(id))
+    .WithName("DeleteTarifa")
+    .WithTags("Deletar")
     .Produces<string>(StatusCodes.Status401Unauthorized)
     .Produces<List<string>>(StatusCodes.Status400BadRequest)
     .Produces<string>(StatusCodes.Status200OK);

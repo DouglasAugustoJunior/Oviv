@@ -1,10 +1,11 @@
-﻿using FaleMais.Domain.DTO;
+﻿using FaleMais.Domain;
+using FaleMais.Domain.DTO;
 
 namespace FaleMais.Service.Interface
 {
-    public interface IDDDService
+    public interface IDDDService : IBaseService<DDD>
     {
-        IResult Atualizar(DDDAtualizarDTO dto);
         List<DDDListagemDTO> Listar();
+        IResult Atualizar(DDDAtualizarDTO dto);
     }
 }

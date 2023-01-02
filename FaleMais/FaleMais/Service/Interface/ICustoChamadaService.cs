@@ -1,8 +1,9 @@
-﻿using FaleMais.Domain.DTO;
+﻿using FaleMais.Domain;
+using FaleMais.Domain.DTO;
 
 namespace FaleMais.Service.Interface
 {
-    public interface ICustoChamadaService
+    public interface ICustoChamadaService : IBaseService<CustoChamada>
     {
         List<CustoChamadaListagemDTO> Listar();
         List<CustoChamadaDTO> ListarParaInput();

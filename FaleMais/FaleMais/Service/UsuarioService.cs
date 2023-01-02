@@ -1,4 +1,5 @@
 ﻿using MiniValidation;
+using FaleMais.Domain;
 using FaleMais.Domain.DTO;
 using FaleMais.Infrastructure;
 using FaleMais.Service.Interface;
@@ -6,11 +7,11 @@ using FaleMais.Repository.Interface;
 
 namespace FaleMais.Service
 {
-    public class UsuarioService: IUsuarioService
+    public class UsuarioService: BaseService<Usuario>, IUsuarioService
     {
         private readonly IUsuarioRepository _usuarioRepository;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository) =>
+        public UsuarioService(IUsuarioRepository usuarioRepository): base(usuarioRepository) =>
             _usuarioRepository = usuarioRepository;
 
         public IResult Atualizar(UsuarioAtualizarDTO dto)

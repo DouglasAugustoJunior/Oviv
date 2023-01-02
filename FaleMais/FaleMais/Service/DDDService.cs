@@ -7,11 +7,11 @@ using FaleMais.Repository.Interface;
 
 namespace FaleMais.Service
 {
-    public class DDDService: IDDDService
+    public class DDDService: BaseService<DDD>, IDDDService
     {
-        private readonly IBaseRepository<DDD> _dddRepository;
+        private readonly IDDDRepository _dddRepository;
 
-        public DDDService(IBaseRepository<DDD> dddRepository) =>
+        public DDDService(IDDDRepository dddRepository): base(dddRepository) =>
             _dddRepository = dddRepository;
 
         public IResult Atualizar(DDDAtualizarDTO dto)
@@ -35,5 +35,15 @@ namespace FaleMais.Service
                     Nome = ddd.Nome
                 })
                 .ToList();
+
+        public override IResult Deletar(int id)
+        {
+            if (id <= 0)
+                return Results.BadRequest("ID inválido para deletar");
+            if(_dddRepository.ValidarExistenciaDeTarifaComDDD(id))
+                return Results.BadRequest("DDD em uso, favor alterar tarifa com DDD primeiro");
+            _dddRepository.Deletar(id);
+            return Results.Ok("Excluído com sucesso!");
+        }
     }
 }

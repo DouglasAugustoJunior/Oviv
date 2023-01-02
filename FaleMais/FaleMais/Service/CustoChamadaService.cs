@@ -1,4 +1,5 @@
 ﻿using MiniValidation;
+using FaleMais.Domain;
 using FaleMais.Domain.DTO;
 using FaleMais.Infrastructure;
 using FaleMais.Service.Interface;
@@ -6,10 +7,10 @@ using FaleMais.Repository.Interface;
 
 namespace FaleMais.Service
 {
-    public class CustoChamadaService : ICustoChamadaService
+    public class CustoChamadaService : BaseService<CustoChamada>, ICustoChamadaService
     {
         private readonly ICustoChamadaRepository _custoChamadaRepository;
-        public CustoChamadaService(ICustoChamadaRepository custoChamadaRepository) =>
+        public CustoChamadaService(ICustoChamadaRepository custoChamadaRepository): base(custoChamadaRepository) =>
             _custoChamadaRepository = custoChamadaRepository;
 
         public IResult Atualizar(CustoChamadaAtualizarDTO dto)
