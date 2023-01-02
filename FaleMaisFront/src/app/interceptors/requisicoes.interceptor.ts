@@ -36,25 +36,34 @@ export class RequisicoesInterceptor implements HttpInterceptor {
     if (erro instanceof HttpErrorResponse)
       switch(erro.status){
         case HttpStatusCode.Unauthorized:
+          this.notificationService.error(
+            'Erro',
+            'Usuário não autorizado ou sessão expirada!'
+          )
           this.autenticacaoService.deslogar()
         break
         case HttpStatusCode.Forbidden:
           this.notificationService.error(
             'Erro de autenticação',
             'Você não tem permissão para acessar essa tela!')
-          return throwError(erro)
+          return throwError(() => erro)
         case HttpStatusCode.NotFound:
           this.notificationService.error(
             'Erro',
             `${erro.error ? erro.error : erro.message}`)
-          return throwError(erro)
+          return throwError(() => erro)
+        case HttpStatusCode.BadRequest:
+          this.notificationService.error(
+            'Erro',
+            `${erro.error ? erro.error : erro.message ? erro.message : erro}`)
+          return throwError(() => erro)
         default:
             this.notificationService.error(
               'Erro',
               `${erro.message}`
             )
-          return throwError(erro)
+          return throwError(() => erro)
       }
-    return throwError(erro)
+    return throwError(() => erro)
   }
 }

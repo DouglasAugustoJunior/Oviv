@@ -1,31 +1,31 @@
+import { IListagemUtils } from './../../shared/utils/IListagemUtils';
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, Validators } from '@angular/forms'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 
 import { DDDListagemDTO } from 'src/app/models/ddd-listagem-dto.model'
-import { AtualizarTarifaDTO } from 'src/app/models/tarifa-atualizar-dto.model'
 import { TarifaListagemDTO } from 'src/app/models/tarifa-listagem-dto.model'
 import { DddService } from 'src/app/services/ddd.service'
 import { TarifaService } from 'src/app/services/tarifa.service'
 import { destacarCamposInvalidos } from 'src/app/shared/utils/FormUtils'
+import { ListagemUtils } from 'src/app/shared/utils/ListagemUtils'
 
 @Component({
   selector: 'app-tarifas',
   templateUrl: './tarifas.component.html'
 })
-export class TarifasComponent implements OnInit {
+export class TarifasComponent extends ListagemUtils implements IListagemUtils, OnInit {
 
   listaTarifas: TarifaListagemDTO[] = []
   tarifaParaEdicao!: TarifaListagemDTO
-  modalVisivel = false
   listaDDDs: DDDListagemDTO[] = []
-  form: FormGroup
 
   constructor(
     private fb:FormBuilder,
     private notificationService: NzNotificationService,
     private tarifaService: TarifaService,
     private dddService: DddService) {
+      super()
       this.form = this.fb.group({
         id: [null, []],
         origemId: [null, [ Validators.required ]],
@@ -41,7 +41,7 @@ export class TarifasComponent implements OnInit {
       .subscribe(listaDDD => this.listaDDDs = listaDDD)
   }
 
-  obterDDDEdicao = (origem: string | undefined): number | null =>
+  private obterDDDEdicao = (origem: string | undefined): number | null =>
     this.listaDDDs.find(ddd => ddd.nome.includes(origem ?? ''))?.id ?? null
 
   private obterTarifas():void {
@@ -51,7 +51,6 @@ export class TarifasComponent implements OnInit {
   }
 
   showModal(tarifa: TarifaListagemDTO): void {
-    console.log(tarifa)
     this.tarifaParaEdicao = tarifa
     this.form.patchValue({
       ...tarifa,
@@ -70,21 +69,6 @@ export class TarifasComponent implements OnInit {
       })
     }else
       destacarCamposInvalidos(this.form)
-  }
-
-  cancel(): void {
-    this.modalVisivel = false
-  }
-
-  limpar(evento: MouseEvent): void {
-    evento.preventDefault()
-    this.form.reset()
-    for (const key in this.form.controls) {
-      if (this.form.controls.hasOwnProperty(key)) {
-        this.form.controls[key].markAsPristine()
-        this.form.controls[key].updateValueAndValidity()
-      }
-    }
   }
 
 }

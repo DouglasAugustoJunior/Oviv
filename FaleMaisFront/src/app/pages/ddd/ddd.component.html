@@ -4,14 +4,49 @@
     [nzFrontPagination]="false">
     <thead>
         <tr>
+            <th></th>
             <th>ID</th>
             <th>DDD</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of dddTable.data">
+            <td nzAlign="center">
+                <a (click)="showModal(data)">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
             <td>{{ data.id }}</td>
             <td>{{ data.nome }}</td>
         </tr>
     </tbody>
 </nz-table>
+
+<nz-modal
+    [(nzVisible)]="modalVisivel"
+    nzTitle="Editar"
+    (nzOnCancel)="cancel()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="form">
+            <nz-form-item>
+                <nz-form-label nzSm="8">ID</nz-form-label>
+                <nz-form-control nzSm="16">
+                    <input nz-input formControlName="id" readonly/>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired>DDD</nz-form-label>
+                <nz-form-control nzSm="16" nzHasFeedback [nzErrorTip]="nomeErrorTpl">
+                    <input nz-input formControlName="nome" placeholder="DDD" type="tel" />
+                    <ng-template #nomeErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">Informe um valor válido</ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </ng-container>
+    <ng-container *nzModalFooter>
+        <button nz-button (click)="limpar($event)">Limpar</button>
+        <button nz-button nzType="primary" [disabled]="form.invalid" (click)="ok()">Salvar</button>
+    </ng-container>
+</nz-modal>
