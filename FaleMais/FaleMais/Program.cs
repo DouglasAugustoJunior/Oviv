@@ -62,7 +62,7 @@ app
 app
     .MapPost(
         "/ddd",
-        (IDDDService _dddService, DDDCadastrarDTO ddd) => _dddService.Cadastrar(ddd))
+        (IDDDService _dddService, DDDCadastrarDTO dto) => _dddService.Cadastrar(dto))
     .WithName("PostDDD")
     .WithTags("Cadastrar")
     .Produces<string>(StatusCodes.Status401Unauthorized)
@@ -93,12 +93,22 @@ app
     .MapGet(
         "/usuarios",
         (IUsuarioService _usuarioService) => _usuarioService.Listar())
-    .WithName("GetUsuarios")
+    .WithName("GetUsuario")
     .WithTags("Listagens")
     .RequireAuthorization(ConfiguracaoAutorizacao.Administrador)
     .Produces<string>(StatusCodes.Status401Unauthorized)
     .Produces<string>(StatusCodes.Status403Forbidden)
     .Produces<List<UsuariosListagemDTO>>(StatusCodes.Status200OK);
+
+app
+    .MapPost(
+        "/usuarios",
+        (IUsuarioService _usuarioService, UsuarioCadastrarDTO dto) => _usuarioService.Cadastrar(dto))
+    .WithName("PostUsuario")
+    .WithTags("Cadastrar")
+    .Produces<string>(StatusCodes.Status401Unauthorized)
+    .Produces<List<string>>(StatusCodes.Status400BadRequest)
+    .Produces<string>(StatusCodes.Status200OK);
 
 app
     .MapPut(
@@ -124,10 +134,20 @@ app
     .MapGet(
         "/tarifas",
         (ICustoChamadaService _custoChamadaService) => _custoChamadaService.Listar())
-    .WithName("GetTarifas")
+    .WithName("GetTarifa")
     .WithTags("Listagens")
     .Produces<string>(StatusCodes.Status401Unauthorized)
     .Produces<List<CustoChamadaListagemDTO>>(StatusCodes.Status200OK);
+
+app
+    .MapPost(
+        "/tarifas",
+        (ICustoChamadaService _custoChamadaService, CustoChamadaCadastrarDTO dto) => _custoChamadaService.Cadastrar(dto))
+    .WithName("PostTarifa")
+    .WithTags("Cadastrar")
+    .Produces<string>(StatusCodes.Status401Unauthorized)
+    .Produces<List<string>>(StatusCodes.Status400BadRequest)
+    .Produces<string>(StatusCodes.Status200OK);
 
 app
     .MapPut(
@@ -162,7 +182,7 @@ app
     .MapGet(
         "/planos",
         (IPlanoService _planoService) => _planoService.Listar())
-    .WithName("GetPlanos")
+    .WithName("GetPlano")
     .WithTags("Listagens")
     .Produces<string>(StatusCodes.Status401Unauthorized)
     .Produces<List<PlanoListagemDTO>>(StatusCodes.Status200OK);

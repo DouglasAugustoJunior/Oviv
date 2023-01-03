@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FaleMais.Domain.DTO;
+using System.ComponentModel.DataAnnotations;
 
 namespace FaleMais.Domain
 {
@@ -8,9 +9,9 @@ namespace FaleMais.Domain
         [StringLength(3,ErrorMessage = "DDD deve ter 3 caracteres")]
         public string Nome { get; set; } = string.Empty;
 
-        public DDD(string nome)
+        public DDD(DDDCadastrarDTO dto)
         {
-            Nome = nome;
+            Nome = dto.DDD;
         }
 
         public DDD() { }

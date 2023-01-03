@@ -24,6 +24,16 @@ namespace FaleMais.Service
             return Results.Ok("Atualizado com sucesso!");
         }
 
+        public IResult Cadastrar(UsuarioCadastrarDTO dto)
+        {
+            if (!MiniValidator.TryValidate(dto, out var erros))
+                return Results.BadRequest(ValidacoesUtils.ObterErros(erros));
+            if (_usuarioRepository.VerificarSeJaExiste(dto.Nome))
+                return Results.BadRequest("Usuário informado já existe");
+            _usuarioRepository.Cadastrar(new Usuario(dto));
+            return Results.Ok("Cadastrado com sucesso!");
+        }
+
         public List<UsuariosListagemDTO> Listar() =>
             _usuarioRepository
                 .Listar()

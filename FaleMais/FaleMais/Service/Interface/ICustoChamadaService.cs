@@ -7,6 +7,8 @@ namespace FaleMais.Service.Interface
     {
         List<CustoChamadaListagemDTO> Listar();
         List<CustoChamadaDTO> ListarParaInput();
+        IResult Cadastrar(CustoChamadaCadastrarDTO dto);
+
         IResult Atualizar(CustoChamadaAtualizarDTO dto);
     }
 }

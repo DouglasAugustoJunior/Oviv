@@ -1,9 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FaleMais.Domain.DTO;
+using System.ComponentModel.DataAnnotations;
 
 namespace FaleMais.Domain
 {
     public class Usuario : EntidadeBase
     {
+        public Usuario() { }
+
+        public Usuario(UsuarioCadastrarDTO dto)
+        {
+            Nome = dto.Nome;
+            Senha= dto.Senha;
+            Autorizacao= dto.Autorizacao;
+            DataCriacao = DateTime.Now;
+        }
+
         [Required(ErrorMessage ="Preencha o campo Nome")]
         [MinLength(3,ErrorMessage = "O campo Nome precisa ter no mínimo 3 caracteres")]
         [MaxLength(100,ErrorMessage = "O campo Nome precisa ter no máximo 100 caracteres")]

@@ -39,5 +39,11 @@ namespace FaleMais.Repository
                 return false;
             return true;
         }
+
+        public bool VerificarSeJaExiste(CustoChamadaCadastrarDTO dto) =>
+            Context.CustoChamada.Any(_ =>
+                _.OrigemId == dto.OrigemId
+                && _.DestinoId == dto.DestinoId
+                && !_.DataDelecao.HasValue);
     }
 }

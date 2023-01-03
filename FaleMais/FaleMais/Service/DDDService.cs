@@ -20,7 +20,7 @@ namespace FaleMais.Service
                 return Results.BadRequest("Informe um DDD válido");
             if(_dddRepository.VerificarSeJaExiste(dto.DDD))
                 return Results.BadRequest("DDD informado já existe");
-            _dddRepository.Cadastrar(new DDD(dto.DDD));
+            _dddRepository.Cadastrar(new DDD(dto));
             return Results.Ok("Cadastrado com sucesso!");
         }
 

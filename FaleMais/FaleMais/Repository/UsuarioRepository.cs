@@ -14,5 +14,8 @@ namespace FaleMais.Repository
                 .FirstOrDefault(usuario => usuario.Nome.Equals(login.Usuario)
                     && usuario.Senha.Equals(login.Senha)
                     && !usuario.DataDelecao.HasValue);
+
+        public bool VerificarSeJaExiste(string nome) =>
+            Context.Usuario.Any(_ => _.Nome.Equals(nome) && !_.DataDelecao.HasValue);
     }
 }
