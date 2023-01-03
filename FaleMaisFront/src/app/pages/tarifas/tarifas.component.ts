@@ -44,9 +44,14 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
     this.listaDDDs.find(ddd => ddd.nome.includes(origem ?? ''))?.id ?? null
 
   private obterTarifas():void {
-    this.tarifaService
-      .obterTarifas()
-      .subscribe(tarifas => this.listaTarifas = tarifas)
+    this.carregamento(true)
+    this.tarifaService.obterTarifas()
+      .subscribe({
+        next: tarifas => {
+        this.listaTarifas = tarifas
+        },
+        complete: () => this.carregamento(false)
+      })
   }
 
   showModal(tarifa: TarifaListagemDTO): void {
@@ -64,21 +69,32 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
 
   cadastrar(): void {
     if(this.form.valid){
-      this.tarifaService.cadastrar(this.form.value).subscribe(() => {
-        this.form.reset()
-        this.obterTarifas()
-        this.modalVisivel = false
-      })
+      this.carregamento(true)
+      this.tarifaService.cadastrar(this.form.value)
+        .subscribe({
+          next: () => {
+            this.form.reset()
+            this.obterTarifas()
+            this.modalVisivel = false
+          },
+          complete:  () => this.carregamento(false)
+        })
     }else
       destacarCamposInvalidos(this.form)
   }
 
   salvar(): void {
     if(this.form.valid){
-      this.tarifaService.atualizar(this.form.value).subscribe(() => {
-        this.obterTarifas()
-        this.modalVisivel = false
-      })
+      this.carregamento(true)
+      this.tarifaService.atualizar(this.form.value)
+        .subscribe({
+          next: () => {
+            this.form.reset()
+            this.obterTarifas()
+            this.modalVisivel = false
+          },
+          complete: () => this.carregamento(false)
+        })
     }else
       destacarCamposInvalidos(this.form)
   }
@@ -96,7 +112,7 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
     })
   }
 
-  private deletar(id: number): void {
+  deletar(id: number): void {
     this.tarifaService.deletar(id).subscribe(() => {
       this.obterTarifas()
       this.modalVisivel = false

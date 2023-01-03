@@ -31,8 +31,13 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
     this.obterDDDs()
   }
 
-  private obterDDDs() {
-    this.dddService.obterDDDs().subscribe(ddd => this.listaDDD = ddd)
+  private obterDDDs():void {
+    this.carregamento(true)
+    this.dddService.obterDDDs()
+      .subscribe({
+        next: ddd => this.listaDDD = ddd,
+        complete: () => this.carregamento(false)
+      })
   }
 
   showModal(ddd: DDDListagemDTO): void {
@@ -46,9 +51,15 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
 
   cadastrar(): void {
     if(this.form.valid){
-      this.dddService.cadastrar({ ddd: this.form.controls['nome'].value }).subscribe(() => {
-        this.obterDDDs()
-        this.modalVisivel = false
+      this.carregamento(true)
+      this.dddService.cadastrar({ ddd: this.form.controls['nome'].value })
+        .subscribe({
+          next: () => {
+            this.form.reset()
+            this.obterDDDs()
+            this.modalVisivel = false
+          },
+          complete: () => this.carregamento(false)
       })
     }else
       destacarCamposInvalidos(this.form)
@@ -56,10 +67,15 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
 
   salvar(): void {
     if(this.form.valid){
-      this.dddService.atualizar(this.form.value).subscribe(() => {
-        this.form.reset()
-        this.obterDDDs()
-        this.modalVisivel = false
+      this.carregamento(true)
+      this.dddService.atualizar(this.form.value)
+        .subscribe({
+          next:() => {
+            this.form.reset()
+            this.obterDDDs()
+            this.modalVisivel = false
+          },
+          complete: () => this.carregamento(false)
       })
     }else
       destacarCamposInvalidos(this.form)
@@ -78,7 +94,7 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
     })
   }
 
-  private deletar(id: number): void {
+  deletar(id: number): void {
     this.dddService.deletar(id).subscribe(() => {
       this.obterDDDs()
       this.modalVisivel = false

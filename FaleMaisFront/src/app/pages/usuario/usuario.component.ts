@@ -33,10 +33,14 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
     this.obterUsuarios()
   }
 
-  private obterUsuarios() {
+  private obterUsuarios():void {
+    this.carregamento(true)
     this.usuarioService
       .obterUsuarios()
-      .subscribe(usuarios => this.listaUsuarios = usuarios)
+      .subscribe(usuarios => {
+        this.listaUsuarios = usuarios
+        this.carregamento(false)
+      })
   }
 
   showModal(usuario: UsuarioListagemDTO): void {
@@ -50,21 +54,32 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
 
   cadastrar(): void {
     if(this.form.valid){
-      this.usuarioService.cadastrar(this.form.value).subscribe(() => {
-        this.form.reset()
-        this.obterUsuarios()
-        this.modalVisivel = false
-      })
+      this.carregamento(true)
+      this.usuarioService.cadastrar(this.form.value)
+        .subscribe({
+          next: () => {
+            this.form.reset()
+            this.obterUsuarios()
+            this.modalVisivel = false
+          },
+          complete: () => this.carregamento(false)
+        })
     }else
       destacarCamposInvalidos(this.form)
   }
 
   salvar(): void {
     if(this.form.valid){
-      this.usuarioService.atualizar(this.form.value).subscribe(() => {
-        this.obterUsuarios()
-        this.modalVisivel = false
-      })
+      this.carregamento(true)
+      this.usuarioService.atualizar(this.form.value)
+        .subscribe({
+          next: () => {
+            this.form.reset()
+            this.obterUsuarios()
+            this.modalVisivel = false
+          },
+          complete: () => this.carregamento(false)
+        })
     }else
       destacarCamposInvalidos(this.form)
   }
@@ -82,7 +97,7 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
     })
   }
 
-  private deletar(id: number): void {
+  deletar(id: number): void {
     this.usuarioService.deletar(id).subscribe(() => {
       this.obterUsuarios()
       this.modalVisivel = false

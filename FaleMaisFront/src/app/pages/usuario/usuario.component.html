@@ -52,11 +52,11 @@
 
 <nz-modal
     [(nzVisible)]="modalVisivel"
-    nzTitle="Editar"
+    [nzTitle]=" editando ? 'EDITAR' : 'CADASTRAR'"
     (nzOnCancel)="cancel()">
     <ng-container *nzModalContent>
         <form nz-form [formGroup]="form">
-            <nz-form-item  *ngIf="form.get('id')?.value">
+            <nz-form-item  *ngIf="editando">
                 <nz-form-label nzSm="8">ID</nz-form-label>
                 <nz-form-control nzSm="16">
                     <input nz-input formControlName="id" readonly/>
@@ -102,8 +102,8 @@
         </form>
     </ng-container>
     <ng-container *nzModalFooter>
-        <button nz-button (click)="limpar($event)" *ngIf="!form.get('id')?.value">Limpar</button>
-        <button nz-button nzType="primary" [disabled]="form.invalid" (click)="cadastrar()" *ngIf="!form.get('id')?.value">Cadastrar</button>
-        <button nz-button nzType="primary" [disabled]="form.invalid" (click)="salvar()" *ngIf="form.get('id')?.value">Salvar</button>
+        <button nz-button (click)="limpar($event)" *ngIf="!editando">Limpar</button>
+        <button nz-button nzType="primary" [disabled]="form.invalid" [nzLoading]="carregando" (click)="cadastrar()" *ngIf="!editando">Cadastrar</button>
+        <button nz-button nzType="primary" [disabled]="form.invalid" [nzLoading]="carregando" (click)="salvar()" *ngIf="editando">Salvar</button>
     </ng-container>
 </nz-modal>
