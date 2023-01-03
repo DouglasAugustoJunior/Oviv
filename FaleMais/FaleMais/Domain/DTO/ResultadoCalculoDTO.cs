@@ -1,6 +1,6 @@
 ﻿namespace FaleMais.Domain.DTO
 {
-    public class ResultadoCalculoDTO
+    public sealed class ResultadoCalculoDTO
     {
         public string Plano { get; set; } = string.Empty;
         public double TotalPlano { get; set; }

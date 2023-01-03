@@ -6,7 +6,8 @@ namespace FaleMais.Domain
     {
         [Required]
         public int MinutosGratuitos { get; set; }
+
         [Required]
-        public string Nome { get; set; }
+        public string Nome { get; set; } = string.Empty;
     }
 }

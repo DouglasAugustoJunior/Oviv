@@ -1,7 +1,7 @@
 ﻿using FaleMais.Domain;
 using FaleMais.Repository.Interface;
-using FaleMais.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using FaleMais.Infrastructure.Database;
 
 namespace FaleMais.Repository
 {

@@ -9,9 +9,11 @@ namespace FaleMais.Repository
         public DDDRepository(IFaleMaisDbContext context): base(context) { }
 
         public bool ValidarExistenciaDeTarifaComDDD(int id) =>
-            Context.CustoChamada.Any(_ => _.DestinoId == id || _.OrigemId == id);
+            Context.CustoChamada.Any(_ =>
+                (_.DestinoId == id || _.OrigemId == id)
+                && !_.DataDelecao.HasValue);
 
         public bool VerificarSeJaExiste(string ddd) =>
-            Context.DDD.Any(_ => _.Nome.Equals(ddd));
+            Context.DDD.Any(_ => _.Nome.Equals(ddd) && !_.DataDelecao.HasValue);
     }
 }

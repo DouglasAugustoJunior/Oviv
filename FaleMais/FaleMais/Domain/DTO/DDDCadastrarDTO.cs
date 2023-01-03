@@ -2,6 +2,6 @@
 {
     public class DDDCadastrarDTO
     {
-        public string DDD { get; set; }
+        public string DDD { get; set; } = string.Empty;
     }
 }

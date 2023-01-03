@@ -63,5 +63,32 @@ namespace FaleMaisTestes.RepositoryTestes
             Assert.Equal(usuarioCorreto, usuarioRetornado?.Nome);
             Assert.Equal(senhaCorreta, usuarioRetornado?.Senha);
         }
+
+        [Fact]
+        public void VerificarSeJaExiste_QuandoUsuarioDeletado_DeveRetornarFalse()
+        {
+            // Arrange
+            var usuario = "Usuário";
+            var usuarios = new List<Usuario>()
+            {
+                new Usuario() {
+                    Nome = usuario,
+                    Senha = "12345678",
+                    DataDelecao = DateTime.Now
+                }
+            };
+            var usuarioStub = MockDbSetUtil.MockDbSet(usuarios);
+            var contextMock = new Mock<IFaleMaisDbContext>();
+            contextMock
+                .Setup(_ => _.Usuario)
+                .Returns(usuarioStub.Object);
+            var repository = new UsuarioRepository(contextMock.Object);
+
+            // Act
+            var existe = repository.VerificarSeJaExiste(usuario);
+
+            // Assert
+            Assert.False(existe);
+        }
     }
 }

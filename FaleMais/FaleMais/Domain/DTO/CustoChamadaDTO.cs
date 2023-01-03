@@ -1,6 +1,6 @@
 ﻿namespace FaleMais.Domain.DTO
 {
-    public class CustoChamadaDTO
+    public sealed class CustoChamadaDTO
     {
         public int Id { get; set; }
         public int OrigemId { get; set; }
