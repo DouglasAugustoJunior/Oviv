@@ -1,17 +1,6 @@
-<nz-row nzJustify="end">
-    <nz-col>
-        <button
-            nz-button
-            nzShape="round"
-            nzType="primary"
-            (click)="modalCadastrar()">
-            <i nz-icon nzType="plus"></i>
-            Cadastrar
-        </button>
-    </nz-col>
-</nz-row>
-
-<br>
+<app-botao-cadastrar
+    (abrirModal)="modalCadastrar()">
+</app-botao-cadastrar>
 
 <nz-table
     #tarifaTable

@@ -9,6 +9,7 @@ import { NzFormModule } from 'ng-zorro-antd/form'
 
 import { DDDComponent } from './ddd.component'
 import { IconsProviderModule } from 'src/app/components/menu/icons-provider.module'
+import { BotaoCadastrarModule } from 'src/app/shared/botao-cadastrar/botao-cadastrar.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { IconsProviderModule } from 'src/app/components/menu/icons-provider.modu
     NzTableModule,
     IconsProviderModule,
     NzModalModule,
-    NzButtonModule
+    NzButtonModule,
+    BotaoCadastrarModule
   ],
   exports: [
     DDDComponent

@@ -10,6 +10,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal'
 
 import { TarifasComponent } from './tarifas.component'
 import { IconsProviderModule } from 'src/app/components/menu/icons-provider.module'
+import { BotaoCadastrarModule } from 'src/app/shared/botao-cadastrar/botao-cadastrar.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { IconsProviderModule } from 'src/app/components/menu/icons-provider.modu
     NzTableModule,
     IconsProviderModule,
     NzModalModule,
-    NzSelectModule
+    NzSelectModule,
+    BotaoCadastrarModule
   ],
   exports: [
     TarifasComponent
