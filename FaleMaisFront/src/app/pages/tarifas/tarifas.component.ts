@@ -29,7 +29,7 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
         id: [null, []],
         origemId: [null, [ Validators.required ]],
         destinoId: [null, [ Validators.required ]],
-        valorPorMin: [null, [ Validators.required ]]
+        valorPorMin: [null, [ Validators.required, Validators.min(0.01) ]]
       })
     }
 
@@ -58,8 +58,19 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
     this.modalVisivel = true
   }
 
+  modalCadastrar(): void {
+    this.modalVisivel = true
+  }
+
   cadastrar(): void {
-    throw new Error('Method not implemented.')
+    if(this.form.valid){
+      this.tarifaService.cadastrar(this.form.value).subscribe(() => {
+        this.form.reset()
+        this.obterTarifas()
+        this.modalVisivel = false
+      })
+    }else
+      destacarCamposInvalidos(this.form)
   }
 
   salvar(): void {

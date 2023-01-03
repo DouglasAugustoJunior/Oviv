@@ -46,7 +46,7 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
 
   cadastrar(): void {
     if(this.form.valid){
-      this.dddService.cadastrar({ddd: this.form.controls['nome'].value}).subscribe(() => {
+      this.dddService.cadastrar({ ddd: this.form.controls['nome'].value }).subscribe(() => {
         this.obterDDDs()
         this.modalVisivel = false
       })
@@ -57,6 +57,7 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
   salvar(): void {
     if(this.form.valid){
       this.dddService.atualizar(this.form.value).subscribe(() => {
+        this.form.reset()
         this.obterDDDs()
         this.modalVisivel = false
       })

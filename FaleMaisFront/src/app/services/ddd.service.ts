@@ -17,8 +17,8 @@ export class DddService {
   obterDDDs = ():Observable<DDDListagemDTO[]> =>
     this.http.get<DDDListagemDTO[]>(`${environment.api}/ddd`)
 
-  cadastrar = (ddd: CadastrarDDDDTO): Observable<string> =>
-    this.http.post<string>(`${environment.api}/ddd`, ddd)
+  cadastrar = (dto: CadastrarDDDDTO): Observable<string> =>
+    this.http.post<string>(`${environment.api}/ddd`, dto)
 
   atualizar = (dto:AtualizarDDDDTO): Observable<string> =>
     this.http.put<string>(`${environment.api}/ddd`, dto)

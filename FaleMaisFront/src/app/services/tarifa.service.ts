@@ -4,6 +4,7 @@ import { Observable } from 'rxjs'
 
 import { environment } from 'src/environments/environment'
 import { AtualizarTarifaDTO } from '../models/tarifa-atualizar-dto.model'
+import { CadastrarTarifaDTO } from '../models/tarifa-cadastrar-dto.model'
 import { TarifaInputDTO } from '../models/tarifa-input-dto.model'
 import { TarifaListagemDTO } from '../models/tarifa-listagem-dto.model'
 
@@ -19,6 +20,9 @@ export class TarifaService {
 
   obterTarifasParaInput = ():Observable<TarifaInputDTO[]> =>
     this.http.get<TarifaInputDTO[]>(`${environment.api}/tarifasParaInput`)
+
+  cadastrar = (dto: CadastrarTarifaDTO): Observable<string> =>
+    this.http.post<string>(`${environment.api}/tarifas`, dto)
 
   atualizar = (dto:AtualizarTarifaDTO): Observable<string> =>
     this.http.put<string>(`${environment.api}/tarifas`, dto)
