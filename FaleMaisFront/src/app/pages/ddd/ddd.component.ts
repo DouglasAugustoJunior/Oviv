@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { NzModalService } from 'ng-zorro-antd/modal'
+import { finalize } from 'rxjs/operators'
 
 import { DDDListagemDTO } from 'src/app/models/ddd-listagem-dto.model'
 import { DddService } from 'src/app/services/ddd.service'
@@ -34,9 +35,9 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
   private obterDDDs():void {
     this.carregamento(true)
     this.dddService.obterDDDs()
+      .pipe(finalize(() => this.carregamento(false)))
       .subscribe({
-        next: ddd => this.listaDDD = ddd,
-        complete: () => this.carregamento(false)
+        next: ddd => this.listaDDD = ddd
       })
   }
 
@@ -53,13 +54,13 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
     if(this.form.valid){
       this.carregamento(true)
       this.dddService.cadastrar({ ddd: this.form.controls['nome'].value })
+        .pipe(finalize(() => this.carregamento(false)))
         .subscribe({
           next: () => {
             this.form.reset()
             this.obterDDDs()
             this.modalVisivel = false
-          },
-          complete: () => this.carregamento(false)
+          }
       })
     }else
       destacarCamposInvalidos(this.form)
@@ -69,13 +70,13 @@ export class DDDComponent extends ListagemUtils implements IListagemUtils, OnIni
     if(this.form.valid){
       this.carregamento(true)
       this.dddService.atualizar(this.form.value)
+        .pipe(finalize(() => this.carregamento(false)))
         .subscribe({
           next:() => {
             this.form.reset()
             this.obterDDDs()
             this.modalVisivel = false
-          },
-          complete: () => this.carregamento(false)
+          }
       })
     }else
       destacarCamposInvalidos(this.form)

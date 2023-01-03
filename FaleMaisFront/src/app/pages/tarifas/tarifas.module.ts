@@ -1,3 +1,4 @@
+import { ModalFooterModule } from './../../shared/modal-footer/modal-footer.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
@@ -26,7 +27,8 @@ import { BotaoCadastrarModule } from 'src/app/shared/botao-cadastrar/botao-cadas
     IconsProviderModule,
     NzModalModule,
     NzSelectModule,
-    BotaoCadastrarModule
+    BotaoCadastrarModule,
+    ModalFooterModule
   ],
   exports: [
     TarifasComponent

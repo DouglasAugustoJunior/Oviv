@@ -11,6 +11,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UsuarioComponent } from './usuario.component'
 import { IconsProviderModule } from 'src/app/components/menu/icons-provider.module'
 import { BotaoCadastrarModule } from 'src/app/shared/botao-cadastrar/botao-cadastrar.module';
+import { ModalFooterModule } from 'src/app/shared/modal-footer/modal-footer.module'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BotaoCadastrarModule } from 'src/app/shared/botao-cadastrar/botao-cadas
     IconsProviderModule,
     NzModalModule,
     NzSelectModule,
-    BotaoCadastrarModule
+    BotaoCadastrarModule,
+    ModalFooterModule
   ],
   exports: [
     UsuarioComponent

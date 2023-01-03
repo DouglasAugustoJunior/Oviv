@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { NzModalService } from 'ng-zorro-antd/modal'
+import { finalize } from 'rxjs/operators'
 
 import { UsuarioListagemDTO } from 'src/app/models/usuario-listagem-dto.model'
 import { UsuarioService } from 'src/app/services/usuario.service'
@@ -37,9 +38,9 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
     this.carregamento(true)
     this.usuarioService
       .obterUsuarios()
+      .pipe(finalize(() => this.carregamento(false)))
       .subscribe(usuarios => {
         this.listaUsuarios = usuarios
-        this.carregamento(false)
       })
   }
 
@@ -56,13 +57,13 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
     if(this.form.valid){
       this.carregamento(true)
       this.usuarioService.cadastrar(this.form.value)
+        .pipe(finalize(() => this.carregamento(false)))
         .subscribe({
           next: () => {
             this.form.reset()
             this.obterUsuarios()
             this.modalVisivel = false
-          },
-          complete: () => this.carregamento(false)
+          }
         })
     }else
       destacarCamposInvalidos(this.form)
@@ -72,13 +73,13 @@ export class UsuarioComponent  extends ListagemUtils implements IListagemUtils, 
     if(this.form.valid){
       this.carregamento(true)
       this.usuarioService.atualizar(this.form.value)
+        .pipe(finalize(() => this.carregamento(false)))
         .subscribe({
           next: () => {
             this.form.reset()
             this.obterUsuarios()
             this.modalVisivel = false
-          },
-          complete: () => this.carregamento(false)
+          }
         })
     }else
       destacarCamposInvalidos(this.form)

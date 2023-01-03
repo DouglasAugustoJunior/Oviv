@@ -9,6 +9,7 @@ import { DddService } from 'src/app/services/ddd.service'
 import { TarifaService } from 'src/app/services/tarifa.service'
 import { destacarCamposInvalidos } from 'src/app/shared/utils/FormUtils'
 import { ListagemUtils } from 'src/app/shared/utils/ListagemUtils'
+import { finalize } from 'rxjs/operators'
 
 @Component({
   selector: 'app-tarifas',
@@ -46,11 +47,11 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
   private obterTarifas():void {
     this.carregamento(true)
     this.tarifaService.obterTarifas()
+      .pipe(finalize(() => this.carregamento(false)))
       .subscribe({
         next: tarifas => {
         this.listaTarifas = tarifas
-        },
-        complete: () => this.carregamento(false)
+        }
       })
   }
 
@@ -71,13 +72,13 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
     if(this.form.valid){
       this.carregamento(true)
       this.tarifaService.cadastrar(this.form.value)
-        .subscribe({
-          next: () => {
+      .pipe(finalize(() => this.carregamento(false)))
+      .subscribe({
+        next: () => {
             this.form.reset()
             this.obterTarifas()
             this.modalVisivel = false
-          },
-          complete:  () => this.carregamento(false)
+          }
         })
     }else
       destacarCamposInvalidos(this.form)
@@ -87,13 +88,13 @@ export class TarifasComponent extends ListagemUtils implements IListagemUtils, O
     if(this.form.valid){
       this.carregamento(true)
       this.tarifaService.atualizar(this.form.value)
+        .pipe(finalize(() => this.carregamento(false)))
         .subscribe({
           next: () => {
             this.form.reset()
             this.obterTarifas()
             this.modalVisivel = false
-          },
-          complete: () => this.carregamento(false)
+          }
         })
     }else
       destacarCamposInvalidos(this.form)
