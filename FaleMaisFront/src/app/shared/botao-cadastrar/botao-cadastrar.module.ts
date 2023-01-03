@@ -5,8 +5,6 @@ import { CommonModule } from '@angular/common'
 
 import { BotaoCadastrarComponent } from './botao-cadastrar.component'
 
-
-
 @NgModule({
   declarations: [
     BotaoCadastrarComponent

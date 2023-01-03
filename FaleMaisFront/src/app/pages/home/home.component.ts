@@ -12,7 +12,7 @@ export class HomeComponent {
 
   constructor(private autenticacaoService: AutenticacaoService) { }
 
-  get estaAutenticado():boolean{
+  get estaAutenticado():boolean {
     return this.autenticacaoService.estaLogado
   }
 }

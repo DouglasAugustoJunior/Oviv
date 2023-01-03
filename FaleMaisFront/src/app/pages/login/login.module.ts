@@ -5,9 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzCardModule } from 'ng-zorro-antd/card'
+import { NzGridModule } from 'ng-zorro-antd/grid'
 
 import { LoginComponent } from './login.component'
-import { NzGridModule } from 'ng-zorro-antd/grid'
 
 @NgModule({
   declarations: [

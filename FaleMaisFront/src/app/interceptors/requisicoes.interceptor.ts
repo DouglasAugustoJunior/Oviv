@@ -7,7 +7,7 @@ import {
   HttpErrorResponse,
   HttpEventType
 } from '@angular/common/http'
-import { catchError, tap, throwError } from 'rxjs'
+import { catchError, Observable, tap, throwError } from 'rxjs'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 
 import { AutenticacaoService } from '../services/autenticacao.service'
@@ -41,7 +41,7 @@ export class RequisicoesInterceptor implements HttpInterceptor {
         catchError(this.validarErro()))
   }
 
-  private validarErro = () => (erro:any) => {
+  private validarErro = () => (erro:any): Observable<never> => {
     if (erro instanceof HttpErrorResponse)
       switch(erro.status){
         case HttpStatusCode.Unauthorized:

@@ -12,15 +12,14 @@ export class AutenticacaoGuard implements CanActivate {
     private autenticacaoService: AutenticacaoService,
     private router: Router) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
     let estaLogado = this.autenticacaoService.estaLogado
     if(route.routeConfig?.path == 'login')
       return this.validarAcessoParaLogin(estaLogado)
     return this.validarAcessoParaAplicacao(estaLogado)
   }
 
-  validarAcessoParaLogin(estaLogado:boolean){
+  validarAcessoParaLogin(estaLogado:boolean): boolean {
     if(estaLogado){
       this.router.navigateByUrl('')
       return false
@@ -28,7 +27,7 @@ export class AutenticacaoGuard implements CanActivate {
     return true
   }
 
-  validarAcessoParaAplicacao(estaLogado: boolean){
+  validarAcessoParaAplicacao(estaLogado: boolean): boolean {
     if(estaLogado)
       return true
     this.router.navigateByUrl('login')

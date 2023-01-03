@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { tap } from 'rxjs'
 
 import { CalculoDTO } from './../../models/calculo-dto.model'
 import { CalculoService } from 'src/app/services/calculo.service'
@@ -14,7 +13,7 @@ export class CalcularValoresComponent {
   calculos: CardCalculoDTO[] = []
   constructor(private calculoService: CalculoService) { }
 
-  calcular(dadosParaCalcular: CalculoDTO):void{
+  calcular(dadosParaCalcular: CalculoDTO):void {
     this.calculoService
       .calcular(dadosParaCalcular)
       .subscribe(calculos => this.calculos = calculos)

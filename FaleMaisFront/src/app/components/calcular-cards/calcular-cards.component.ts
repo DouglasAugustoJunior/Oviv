@@ -6,15 +6,14 @@ import { Card } from 'src/app/models/card.model'
 
 @Component({
   selector: 'app-calcular-cards',
-  templateUrl: './calcular-cards.component.html',
-  styleUrls: ['./calcular-cards.component.less']
+  templateUrl: './calcular-cards.component.html'
 })
 export class CalcularCardsComponent {
   @Input() calculos: CardCalculoDTO[] = []
 
   constructor(private currencyPipe:CurrencyPipe) { }
 
-  converterCalculoEmCard(calculo:CardCalculoDTO): Card{
+  converterCalculoEmCard(calculo:CardCalculoDTO): Card {
     return {
       valor: this.currencyPipe.transform(calculo.totalPlano, 'R$'),
       descricao: calculo.plano,

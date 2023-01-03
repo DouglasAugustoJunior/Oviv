@@ -9,7 +9,7 @@ import { NzFormModule } from 'ng-zorro-antd/form'
 
 import { DDDComponent } from './ddd.component'
 import { IconsProviderModule } from 'src/app/components/menu/icons-provider.module'
-import { BotaoCadastrarModule } from 'src/app/shared/botao-cadastrar/botao-cadastrar.module';
+import { BotaoCadastrarModule } from 'src/app/shared/botao-cadastrar/botao-cadastrar.module'
 import { ModalFooterModule } from 'src/app/shared/modal-footer/modal-footer.module'
 
 @NgModule({
