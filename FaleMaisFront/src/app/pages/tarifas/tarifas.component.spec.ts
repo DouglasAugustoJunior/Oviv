@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { TarifasComponent } from './tarifas.component'
+import { TarifasModule } from './tarifas.module'
 
 describe('TarifasComponent', () => {
   let component: TarifasComponent
@@ -9,7 +10,10 @@ describe('TarifasComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ TarifasComponent ],
-      imports: [HttpClientTestingModule], 
+      imports: [
+        TarifasModule,
+        HttpClientTestingModule
+      ], 
       providers: [TarifasComponent]
     })
     .compileComponents()

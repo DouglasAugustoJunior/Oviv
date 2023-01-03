@@ -9,7 +9,7 @@ export class ModalFooterComponent {
 
   @Input() editando = false
   @Input() carregando = false
-  @Input() form!: FormGroup
+  @Input() form: FormGroup | undefined
   @Output() limparForm = new EventEmitter<MouseEvent>()
   @Output() cadastrarForm = new EventEmitter<boolean>()
   @Output() salvarForm = new EventEmitter<boolean>()
