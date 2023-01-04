@@ -37,7 +37,7 @@ namespace FaleMais.Service
             if(_dddRepository.BuscarPorId(dto.DestinoId) == null)
                 return Results.BadRequest("Destino informado é inválido");
             if(_dddRepository.BuscarPorId(dto.OrigemId) == null)
-                return Results.BadRequest("Origem informado é inválido");
+                return Results.BadRequest("Origem informado é inválida");
             if (_custoChamadaRepository.VerificarSeJaExiste(dto))
                 return Results.BadRequest("Tarifa informada já existe");
             _custoChamadaRepository.Cadastrar(new CustoChamada(dto));

@@ -1,7 +1,6 @@
 ﻿using Moq;
 using FaleMais.Domain;
 using FaleMais.Service;
-using System.Text.Json;
 using FaleMais.Domain.DTO;
 using Microsoft.AspNetCore.Http;
 using FaleMais.Service.Interface;
@@ -18,10 +17,8 @@ namespace FaleMaisTestes.ServiceTestes
             var calculo = new CalculosDTO();
             var servico = new CalcularService(null, null);
             // Act
-            var retornocalculo = servico.Calcular(calculo);
-            var calculoSerializado = JsonSerializer.Serialize<object>(retornocalculo);
-            var calculoComStatusCode = JsonSerializer.Deserialize<Retorno>(calculoSerializado);
-            // Arrange
+            var calculoComStatusCode = Retorno.ObterRetorno(servico.Calcular(calculo));
+            // Assert
             Assert.Equal(StatusCodes.Status400BadRequest, calculoComStatusCode?.StatusCode);
         }
 
@@ -38,10 +35,8 @@ namespace FaleMaisTestes.ServiceTestes
             var custoChamadaRepositoryMock = new Mock<ICustoChamadaRepository>();
             var servico = new CalcularService(custoChamadaRepositoryMock.Object, null);
             // Act
-            var retornocalculo = servico.Calcular(calculo);
-            var calculoSerializado = JsonSerializer.Serialize<object>(retornocalculo);
-            var calculoComStatusCode = JsonSerializer.Deserialize<Retorno>(calculoSerializado);
-            // Arrange
+            var calculoComStatusCode = Retorno.ObterRetorno(servico.Calcular(calculo));
+            // Assert
             Assert.Equal(StatusCodes.Status404NotFound, calculoComStatusCode?.StatusCode);
         }
 
@@ -63,10 +58,8 @@ namespace FaleMaisTestes.ServiceTestes
                 .Returns(new CustoChamada());
             var servico = new CalcularService(custoChamadaRepositoryMock.Object, planoRepositoryMock.Object);
             // Act
-            var retornocalculo = servico.Calcular(calculo);
-            var calculoSerializado = JsonSerializer.Serialize<object>(retornocalculo);
-            var calculoComStatusCode = JsonSerializer.Deserialize<Retorno>(calculoSerializado);
-            // Arrange
+            var calculoComStatusCode = Retorno.ObterRetorno(servico.Calcular(calculo));
+            // Assert
             Assert.Equal(StatusCodes.Status200OK, calculoComStatusCode?.StatusCode);
         }
         
@@ -79,7 +72,7 @@ namespace FaleMaisTestes.ServiceTestes
         {
             // Act
             var totalPlano = CalcularService.CalcularTotalPlano(qtdeMinutos,minutosGratuitos,valorPorMin);
-            // Arrange
+            // Assert
             Assert.Equal(resultadoEsperado, Math.Round(totalPlano,2));
         }
         
@@ -90,7 +83,7 @@ namespace FaleMaisTestes.ServiceTestes
         {
             // Act
             var totalSemPlano = CalcularService.CalcularTotalSemPlano(qtdeMinutos,valorPorMin);
-            // Arrange
+            // Assert
             Assert.Equal(resultadoEsperado, totalSemPlano);
         }
     }
