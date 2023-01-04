@@ -1,6 +1,6 @@
 ﻿using FaleMais.Infrastructure;
 
-namespace FaleMaisTestes.Infrastructure
+namespace FaleMaisTestes.InfrastructureTestes
 {
     public class ValidacoesUtilsTests
     {

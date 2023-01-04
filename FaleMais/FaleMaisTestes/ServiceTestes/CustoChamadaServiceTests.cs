@@ -24,7 +24,7 @@ namespace FaleMaisTestes.ServiceTestes
             };
             // Act
             var erro = RetornoExtendido.ObterRetornoExtendido(servico.Cadastrar(dto));
-            // Arrange
+            // Assert
             Assert.Equal(StatusCodes.Status400BadRequest, erro?.StatusCode);
             Assert.Equal("Destino informado é inválido", erro?.Value);
         }
@@ -46,7 +46,7 @@ namespace FaleMaisTestes.ServiceTestes
             };
             // Act
             var erro = RetornoExtendido.ObterRetornoExtendido(servico.Cadastrar(dto));
-            // Arrange
+            // Assert
             Assert.Equal(StatusCodes.Status400BadRequest, erro?.StatusCode);
             Assert.Equal("Origem informado é inválida", erro?.Value);
         }
@@ -74,7 +74,7 @@ namespace FaleMaisTestes.ServiceTestes
             };
             // Act
             var erro = RetornoExtendido.ObterRetornoExtendido(servico.Cadastrar(dto));
-            // Arrange
+            // Assert
             Assert.Equal(StatusCodes.Status400BadRequest, erro?.StatusCode);
             Assert.Equal("Tarifa informada já existe", erro?.Value);
         }
@@ -99,7 +99,7 @@ namespace FaleMaisTestes.ServiceTestes
             };
             // Act
             var erro = RetornoExtendido.ObterRetornoExtendido(servico.Atualizar(dto));
-            // Arrange
+            // Assert
             Assert.Equal(StatusCodes.Status400BadRequest, erro?.StatusCode);
             Assert.Equal("Valores inválidos para atualizar!", erro?.Value);
         }
