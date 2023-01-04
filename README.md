@@ -104,14 +104,17 @@ Usuários previamente cadastrados:
 
 * Tarifas
   * Contém a listagem das tarifas cobradas por minuto de acordo com a combinação do DDD
+  * É possível excluír,alterar e cadastrar registros
   * Acesso somente de administrador
 
 * DDD
   * Contém a listagem dos DDDs disponíveis
+  * É possível excluír,alterar e cadastrar registros
   * Acesso somente de administrador
 
 * Usuários
   * Contém os usuários da aplicação, com nome, tipo e data de criação.
+  * É possível excluír,alterar e cadastrar registros
   * Acesso somente de administrador
 
 * Nosso Planos
