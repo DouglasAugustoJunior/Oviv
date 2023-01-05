@@ -1,4 +1,4 @@
-﻿using FaleMais.Domain.DTO;
+﻿using Domain.DTO;
 using MiniValidation;
 
 namespace FaleMaisTestes.DomainTestes

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace FaleMais.Infrastructure.Auth
+namespace Infrastructure.Auth
 {
     internal static class ConfiguracaoAutorizacao
     {

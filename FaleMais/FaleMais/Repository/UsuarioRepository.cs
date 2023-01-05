@@ -1,13 +1,13 @@
-﻿using FaleMais.Domain;
-using FaleMais.Domain.DTO;
-using FaleMais.Repository.Interface;
-using FaleMais.Infrastructure.Database;
+﻿using Domain;
+using Repository.Interface;
+using Infrastructure.Database;
+using Domain.DTO;
 
-namespace FaleMais.Repository
+namespace Repository
 {
     public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
     {
-        public UsuarioRepository(IFaleMaisDbContext context): base(context) { }
+        public UsuarioRepository(IFaleMaisDbContext context) : base(context) { }
 
         public Usuario? EfetuarLogin(LoginDTO login) =>
             Context.Usuario

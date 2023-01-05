@@ -1,6 +1,6 @@
-﻿using FaleMais.Domain.DTO;
+﻿using Domain.DTO;
 
-namespace FaleMais.Service.Interface
+namespace Service.Interface
 {
     public interface ICalcularService
     {

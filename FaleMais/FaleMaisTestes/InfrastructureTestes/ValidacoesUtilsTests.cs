@@ -1,4 +1,4 @@
-﻿using FaleMais.Infrastructure;
+﻿using Infrastructure;
 
 namespace FaleMaisTestes.InfrastructureTestes
 {

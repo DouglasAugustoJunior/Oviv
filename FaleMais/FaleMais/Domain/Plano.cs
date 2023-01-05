@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FaleMais.Domain
+namespace Domain
 {
     public class Plano : EntidadeBase
     {

@@ -1,12 +1,12 @@
-﻿using FaleMais.Domain;
-using FaleMais.Repository.Interface;
-using FaleMais.Infrastructure.Database;
+﻿using Domain;
+using Infrastructure.Database;
+using Repository.Interface;
 
-namespace FaleMais.Repository
+namespace Repository
 {
     public class DDDRepository : BaseRepository<DDD>, IDDDRepository
     {
-        public DDDRepository(IFaleMaisDbContext context): base(context) { }
+        public DDDRepository(IFaleMaisDbContext context) : base(context) { }
 
         public bool ValidarExistenciaDeTarifaComDDD(int id) =>
             Context.CustoChamada.Any(_ =>

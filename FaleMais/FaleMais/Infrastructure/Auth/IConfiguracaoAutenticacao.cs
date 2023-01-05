@@ -1,4 +1,4 @@
-﻿namespace FaleMais.Infrastructure.Auth
+﻿namespace Infrastructure.Auth
 {
     public interface IConfiguracaoAutenticacao
     {

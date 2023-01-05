@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaleMais", "FaleMais\FaleMais.csproj", "{0FADAE99-050C-4A64-8D9B-C97543AFD9C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fale-mais-back", "FaleMais\fale-mais-back.csproj", "{0FADAE99-050C-4A64-8D9B-C97543AFD9C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaleMaisTestes", "FaleMaisTestes\FaleMaisTestes.csproj", "{6AE2A3D7-C583-4A6A-9171-8E5E3366031D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaleMaisTestes", "FaleMaisTestes\FaleMaisTestes.csproj", "{6AE2A3D7-C583-4A6A-9171-8E5E3366031D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

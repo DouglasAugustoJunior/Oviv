@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FaleMais.Domain.DTO
+namespace Domain.DTO
 {
     public sealed class DDDAtualizarDTO
     {
@@ -11,9 +11,10 @@ namespace FaleMais.Domain.DTO
         public string Nome { get; set; } = string.Empty;
 
         public DDD ToDDD() =>
-            new DDD() {
-                Id= Id,
-                Nome= Nome
+            new DDD()
+            {
+                Id = Id,
+                Nome = Nome
             };
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Moq;
-using FaleMais.Domain;
-using FaleMais.Repository;
+using Domain;
+using Repository;
 using FaleMaisTestes.Utils;
-using FaleMais.Infrastructure.Database;
+using Infrastructure.Database;
 
 namespace FaleMaisTestes.RepositoryTestes
 {

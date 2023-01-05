@@ -1,6 +1,6 @@
-﻿using FaleMais.Domain;
+﻿using Domain;
 
-namespace FaleMais.Service.Interface
+namespace Service.Interface
 {
     public interface ITokenService
     {

@@ -1,10 +1,10 @@
 ﻿using MiniValidation;
-using FaleMais.Domain.DTO;
-using FaleMais.Infrastructure;
-using FaleMais.Service.Interface;
-using FaleMais.Repository.Interface;
+using Repository.Interface;
+using Infrastructure;
+using Service.Interface;
+using Domain.DTO;
 
-namespace FaleMais.Service
+namespace Service
 {
     public class LoginService : ILoginService
     {

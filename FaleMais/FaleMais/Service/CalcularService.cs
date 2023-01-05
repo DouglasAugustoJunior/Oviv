@@ -1,13 +1,13 @@
-﻿using MiniValidation;
-using FaleMais.Domain;
-using FaleMais.Domain.DTO;
-using FaleMais.Infrastructure;
-using FaleMais.Service.Interface;
-using FaleMais.Repository.Interface;
+﻿using Domain;
+using Domain.DTO;
+using MiniValidation;
+using Infrastructure;
+using Service.Interface;
+using Repository.Interface;
 
-namespace FaleMais.Service
+namespace Service
 {
-    public class CalcularService: ICalcularService
+    public class CalcularService : ICalcularService
     {
         private readonly ICustoChamadaRepository _custoChamadaRepository;
         private readonly IBaseRepository<Plano> _planoRepository;
@@ -25,7 +25,7 @@ namespace FaleMais.Service
             if (!MiniValidator.TryValidate(calculos, out var erros))
                 return Results.BadRequest(ValidacoesUtils.ObterErros(erros));
             var custoChamadaSelecionado = _custoChamadaRepository.ObterCustoChamadaPorOrigemEDestino(calculos);
-            if(custoChamadaSelecionado == null)
+            if (custoChamadaSelecionado == null)
                 return Results.NotFound("Não foi possível encontrar essa combinação Origem/Destino.");
             var planosDisponiveis = _planoRepository.Listar()
                 .Select(plano => new ResultadoCalculoDTO()

@@ -1,11 +1,11 @@
-﻿using FaleMais.Domain;
-using FaleMais.Domain.DTO;
-using FaleMais.Service.Interface;
-using FaleMais.Repository.Interface;
+﻿using Domain;
+using Domain.DTO;
+using Repository.Interface;
+using Service.Interface;
 
-namespace FaleMais.Service
+namespace Service
 {
-    public class PlanoService: IPlanoService
+    public class PlanoService : IPlanoService
     {
         private readonly IBaseRepository<Plano> _planoRepository;
 

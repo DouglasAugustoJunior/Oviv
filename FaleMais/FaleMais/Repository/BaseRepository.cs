@@ -1,9 +1,9 @@
-﻿using FaleMais.Domain;
-using FaleMais.Repository.Interface;
-using Microsoft.EntityFrameworkCore;
-using FaleMais.Infrastructure.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using Domain;
+using Infrastructure.Database;
+using Repository.Interface;
 
-namespace FaleMais.Repository
+namespace Repository
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : EntidadeBase
     {

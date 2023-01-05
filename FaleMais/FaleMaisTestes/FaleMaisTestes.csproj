@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FaleMais\FaleMais.csproj" />
+    <ProjectReference Include="..\FaleMais\fale-mais-back.csproj" />
   </ItemGroup>
 
 </Project>

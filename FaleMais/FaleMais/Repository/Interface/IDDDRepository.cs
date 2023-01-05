@@ -1,6 +1,6 @@
-﻿using FaleMais.Domain;
+﻿using Domain;
 
-namespace FaleMais.Repository.Interface
+namespace Repository.Interface
 {
     public interface IDDDRepository : IBaseRepository<DDD>
     {

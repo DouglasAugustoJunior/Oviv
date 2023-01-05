@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors.Infrastructure;
 
-namespace FaleMais.Infrastructure.Auth
+namespace Infrastructure.Auth
 {
     public static class ConfiguracaoPoliticas
     {

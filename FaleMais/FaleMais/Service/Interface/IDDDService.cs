@@ -1,7 +1,7 @@
-﻿using FaleMais.Domain;
-using FaleMais.Domain.DTO;
+﻿using Domain;
+using Domain.DTO;
 
-namespace FaleMais.Service.Interface
+namespace Service.Interface
 {
     public interface IDDDService : IBaseService<DDD>
     {

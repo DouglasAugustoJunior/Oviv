@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FaleMais.Domain.DTO
+namespace Domain.DTO
 {
     public class CustoChamadaCadastrarDTO
     {

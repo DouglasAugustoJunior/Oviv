@@ -1,11 +1,11 @@
-﻿using FaleMais.Domain;
-using System.Security.Claims;
-using FaleMais.Service.Interface;
-using FaleMais.Infrastructure.Auth;
+﻿using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Domain;
+using Service.Interface;
+using Infrastructure.Auth;
 
-namespace FaleMais.Service
+namespace Service
 {
     public class TokenService : ITokenService
     {

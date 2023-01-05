@@ -1,11 +1,11 @@
 ﻿using MiniValidation;
-using FaleMais.Domain;
-using FaleMais.Domain.DTO;
-using FaleMais.Infrastructure;
-using FaleMais.Service.Interface;
-using FaleMais.Repository.Interface;
+using Service.Interface;
+using Domain.DTO;
+using Infrastructure;
+using Domain;
+using Repository.Interface;
 
-namespace FaleMais.Service
+namespace Service
 {
     public class CustoChamadaService : BaseService<CustoChamada>, ICustoChamadaService
     {
@@ -14,9 +14,9 @@ namespace FaleMais.Service
 
         public CustoChamadaService(
             IDDDRepository dddRepository,
-            ICustoChamadaRepository custoChamadaRepository): base(custoChamadaRepository)
+            ICustoChamadaRepository custoChamadaRepository) : base(custoChamadaRepository)
         {
-            _dddRepository= dddRepository;
+            _dddRepository = dddRepository;
             _custoChamadaRepository = custoChamadaRepository;
         }
 
@@ -34,9 +34,9 @@ namespace FaleMais.Service
         {
             if (!MiniValidator.TryValidate(dto, out var erros))
                 return Results.BadRequest(ValidacoesUtils.ObterErros(erros));
-            if(_dddRepository.BuscarPorId(dto.DestinoId) == null)
+            if (_dddRepository.BuscarPorId(dto.DestinoId) == null)
                 return Results.BadRequest("Destino informado é inválido");
-            if(_dddRepository.BuscarPorId(dto.OrigemId) == null)
+            if (_dddRepository.BuscarPorId(dto.OrigemId) == null)
                 return Results.BadRequest("Origem informado é inválida");
             if (_custoChamadaRepository.VerificarSeJaExiste(dto))
                 return Results.BadRequest("Tarifa informada já existe");

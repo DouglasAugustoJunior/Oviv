@@ -1,10 +1,10 @@
 ﻿using Moq;
-using FaleMais.Domain;
-using FaleMais.Service;
-using FaleMais.Domain.DTO;
-using Microsoft.AspNetCore.Http;
+using Service;
+using Domain;
+using Domain.DTO;
+using Repository.Interface;
 using FaleMais.Service.Interface;
-using FaleMais.Repository.Interface;
+using Microsoft.AspNetCore.Http;
 
 namespace FaleMaisTestes.ServiceTestes
 {

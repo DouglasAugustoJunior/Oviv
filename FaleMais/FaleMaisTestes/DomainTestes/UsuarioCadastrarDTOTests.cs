@@ -1,5 +1,5 @@
 ﻿using MiniValidation;
-using FaleMais.Domain.DTO;
+using Domain.DTO;
 
 namespace FaleMaisTestes.DomainTestes
 {

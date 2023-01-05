@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace FaleMais.Infrastructure.Documentacao
+namespace Infrastructure.Documentation
 {
     internal static class ConfiguracaoSwagger
     {

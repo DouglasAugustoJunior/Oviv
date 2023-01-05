@@ -1,11 +1,11 @@
-using FaleMais.Service;
-using FaleMais.Domain.DTO;
-using FaleMais.Repository;
-using FaleMais.Service.Interface;
-using FaleMais.Infrastructure.Auth;
-using FaleMais.Repository.Interface;
-using FaleMais.Infrastructure.Database;
-using FaleMais.Infrastructure.Documentacao;
+using Service;
+using Domain.DTO;
+using Repository;
+using Service.Interface;
+using Infrastructure.Auth;
+using Repository.Interface;
+using Infrastructure.Database;
+using Infrastructure.Documentation;
 
 var builder = WebApplication.CreateBuilder(args);
 var politica = builder.Configuration.GetValue<string>("policy");
@@ -47,7 +47,6 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors(politica);
-app.UseHttpsRedirection();
 
 app
     .MapGet(

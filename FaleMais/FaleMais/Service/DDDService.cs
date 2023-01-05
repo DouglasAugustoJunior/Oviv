@@ -1,24 +1,24 @@
 ﻿using MiniValidation;
-using FaleMais.Domain;
-using FaleMais.Domain.DTO;
-using FaleMais.Infrastructure;
-using FaleMais.Service.Interface;
-using FaleMais.Repository.Interface;
+using Domain.DTO;
+using Infrastructure;
+using Service.Interface;
+using Repository.Interface;
+using Domain;
 
-namespace FaleMais.Service
+namespace Service
 {
-    public class DDDService: BaseService<DDD>, IDDDService
+    public class DDDService : BaseService<DDD>, IDDDService
     {
         private readonly IDDDRepository _dddRepository;
 
-        public DDDService(IDDDRepository dddRepository): base(dddRepository) =>
+        public DDDService(IDDDRepository dddRepository) : base(dddRepository) =>
             _dddRepository = dddRepository;
 
         public IResult Cadastrar(DDDCadastrarDTO dto)
         {
-            if(string.IsNullOrEmpty(dto.DDD) || !int.TryParse(dto.DDD, out int _))
+            if (string.IsNullOrEmpty(dto.DDD) || !int.TryParse(dto.DDD, out int _))
                 return Results.BadRequest("Informe um DDD válido");
-            if(_dddRepository.VerificarSeJaExiste(dto.DDD))
+            if (_dddRepository.VerificarSeJaExiste(dto.DDD))
                 return Results.BadRequest("DDD informado já existe");
             _dddRepository.Cadastrar(new DDD(dto));
             return Results.Ok("Cadastrado com sucesso!");
@@ -50,7 +50,7 @@ namespace FaleMais.Service
         {
             if (id <= 0)
                 return Results.BadRequest("ID inválido para deletar");
-            if(_dddRepository.ValidarExistenciaDeTarifaComDDD(id))
+            if (_dddRepository.ValidarExistenciaDeTarifaComDDD(id))
                 return Results.BadRequest("DDD em uso, favor alterar tarifa com DDD primeiro");
             _dddRepository.Deletar(id);
             return Results.Ok("Excluído com sucesso!");

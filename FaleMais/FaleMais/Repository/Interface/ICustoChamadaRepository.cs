@@ -1,7 +1,7 @@
-﻿using FaleMais.Domain;
-using FaleMais.Domain.DTO;
+﻿using Domain;
+using Domain.DTO;
 
-namespace FaleMais.Repository.Interface
+namespace Repository.Interface
 {
     public interface ICustoChamadaRepository : IBaseRepository<CustoChamada>
     {

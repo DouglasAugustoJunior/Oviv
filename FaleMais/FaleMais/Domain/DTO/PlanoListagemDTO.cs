@@ -1,4 +1,4 @@
-﻿namespace FaleMais.Domain.DTO
+﻿namespace Domain.DTO
 {
     public class PlanoListagemDTO
     {

@@ -1,14 +1,14 @@
-﻿using FaleMais.Domain;
-using FaleMais.Domain.DTO;
-using FaleMais.Repository.Interface;
-using Microsoft.EntityFrameworkCore;
-using FaleMais.Infrastructure.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using Domain.DTO;
+using Infrastructure.Database;
+using Domain;
+using Repository.Interface;
 
-namespace FaleMais.Repository
+namespace Repository
 {
     public class CustoChamadaRepository : BaseRepository<CustoChamada>, ICustoChamadaRepository
     {
-        public CustoChamadaRepository(IFaleMaisDbContext context): base(context) { }
+        public CustoChamadaRepository(IFaleMaisDbContext context) : base(context) { }
 
         public List<CustoChamadaListagemDTO> ListarCustoComIncludes() =>
             Context.CustoChamada
@@ -32,7 +32,7 @@ namespace FaleMais.Repository
         public bool ValidarValorECombinacaoOrigemDestino(CustoChamadaAtualizarDTO dto)
         {
             var custoChamadaAtual = BuscarPorId(dto.Id);
-            if(custoChamadaAtual == null
+            if (custoChamadaAtual == null
                 || !Context.DDD.Any(_ => _.Id == dto.OrigemId)
                 || !Context.DDD.Any(_ => _.Id == dto.DestinoId)
                 || dto.ValorPorMin <= 0)

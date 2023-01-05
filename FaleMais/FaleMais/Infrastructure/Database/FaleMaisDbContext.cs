@@ -1,7 +1,7 @@
-﻿using FaleMais.Domain;
+﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace FaleMais.Infrastructure.Database
+namespace Infrastructure.Database
 {
     public class FaleMaisDbContext : DbContext, IFaleMaisDbContext
     {

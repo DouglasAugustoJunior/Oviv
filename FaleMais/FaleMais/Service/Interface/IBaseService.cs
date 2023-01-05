@@ -1,6 +1,6 @@
-﻿using FaleMais.Domain;
+﻿using Domain;
 
-namespace FaleMais.Service.Interface
+namespace Service.Interface
 {
     public interface IBaseService<TEntity> where TEntity : EntidadeBase
     {

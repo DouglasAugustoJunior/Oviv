@@ -1,4 +1,4 @@
-﻿namespace FaleMais.Infrastructure
+﻿namespace Infrastructure
 {
     public static class ValidacoesUtils
     {

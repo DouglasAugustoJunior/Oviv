@@ -1,7 +1,7 @@
-﻿using FaleMais.Domain.DTO;
+﻿using Domain.DTO;
 using System.ComponentModel.DataAnnotations;
 
-namespace FaleMais.Domain
+namespace Domain
 {
     public class CustoChamada : EntidadeBase
     {
@@ -10,8 +10,8 @@ namespace FaleMais.Domain
         public CustoChamada(CustoChamadaCadastrarDTO dto)
         {
             OrigemId = dto.OrigemId;
-            DestinoId= dto.DestinoId;
-            ValorPorMin= dto.ValorPorMin;
+            DestinoId = dto.DestinoId;
+            ValorPorMin = dto.ValorPorMin;
         }
 
         [Required]

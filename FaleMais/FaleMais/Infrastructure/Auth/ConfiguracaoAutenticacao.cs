@@ -3,11 +3,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace FaleMais.Infrastructure.Auth
+namespace Infrastructure.Auth
 {
     internal sealed class ConfiguracaoAutenticacao : IConfiguracaoAutenticacao
     {
-        private string _chaveSecreta { get; set; }
+        private string _chaveSecreta { get; set; } = string.Empty;
         public string ChaveSecreta
         {
             get => _chaveSecreta;
