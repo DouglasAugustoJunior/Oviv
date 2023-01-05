@@ -6,6 +6,7 @@ using Infrastructure.Auth;
 using Repository.Interface;
 using Infrastructure.Database;
 using Infrastructure.Documentation;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var politica = builder.Configuration.GetValue<string>("policy");
@@ -47,6 +48,14 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors(politica);
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<FaleMaisDbContext>();
+    if (context.Database.GetPendingMigrations().Any())
+        context.Database.Migrate();
+}
 
 app
     .MapGet(
