@@ -18,6 +18,9 @@ Sistema tem como objetivo realizar o cálculo do custo de chamadas em determinad
   * [JwtBearer](https://docs.microsoft.com/pt-br/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer?view=aspnetcore-6.0)
   * [SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/#supportedframeworks-body-tab)
 
+* Infra
+  * [Docker](https://www.docker.com/get-started/)
+
 
 ## Front
 
@@ -157,3 +160,18 @@ O token por padrão expira em 2h
 ### Documentação
 
 A aplicação conta com o **Swagger** para documentar seus endpoints, para acessá-lo basta ir até a URL https://localhost:7238/swagger/index.html
+
+## Containers
+Para testar a aplicação utilizando o docker basta baixar as imagens [fale-mais-front](https://hub.docker.com/r/douglasaugustojunior/fale-mais-front) e [falemaisback](https://hub.docker.com/r/douglasaugustojunior/falemaisback)
+* ```docker pull douglasaugustojunior/falemaisback```
+* ```docker pull douglasaugustojunior/fale-mais-front```
+
+Após isso suba o back-end na porta **5000** com o comando
+
+ ```docker run --rm -p 5000:80 douglasaugustojunior/falemaisback```
+
+ e o front na porta **81** com o comando
+
+ ```docker run --rm -p 81:80 douglasaugustojunior/fale-mais-front```
+
+ Acesse a aplicação no endereço **localhost:81** e a documentação no endereço **localhost:5000/swagger**.
