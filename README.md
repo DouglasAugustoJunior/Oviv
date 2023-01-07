@@ -172,6 +172,6 @@ Após isso suba o back-end na porta **5000** com o comando
 
  e o front na porta **81** com o comando
 
- ```docker run --rm -p 81:80 douglasaugustojunior/fale-mais-front```
+ ```docker run --env API_URL="http://localhost:5000" --rm -p 81:80 douglasaugustojunior/fale-mais-front```
 
  Acesse a aplicação no endereço **localhost:81** e a documentação no endereço **localhost:5000/swagger**.

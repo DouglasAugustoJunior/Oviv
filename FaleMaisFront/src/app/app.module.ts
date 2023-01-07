@@ -22,6 +22,7 @@ import { CalcularFormularioModule } from './components/calcular-formulario/calcu
 import { CalcularCardsModule } from './components/calcular-cards/calcular-cards.module'
 import { CalcularValoresModule } from './components/calcular-valores/calcular-valores.module'
 import { PaginaNaoEncontradaModule } from './components/pagina-nao-encontrada/pagina-nao-encontrada.module';
+import { EnvServiceProvider } from './services/env.service.provider'
 
 registerLocaleData(pt)
 
@@ -50,7 +51,8 @@ registerLocaleData(pt)
   ],
   providers: [
     { provide: NZ_I18N, useValue: pt_BR },
-    { provide: HTTP_INTERCEPTORS, useClass: RequisicoesInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: RequisicoesInterceptor, multi: true },
+    EnvServiceProvider
   ],
   bootstrap: [ AppComponent ]
 })

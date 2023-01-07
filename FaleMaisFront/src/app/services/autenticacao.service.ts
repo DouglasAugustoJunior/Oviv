@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable, tap } from 'rxjs'
 
-import { environment } from 'src/environments/environment'
 import { Usuario } from '../models/usuario.model'
+import { EnvironmentService } from './enviroment.service'
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,14 @@ export class AutenticacaoService {
   tokenLocalStorageUsuario:string = 'tokenUsuario'
   autorizacaoLocalStorageUsuario:string = 'AutorizacaoUsuario'
 
-  constructor(private http : HttpClient,private router: Router) { }
+  constructor(
+    private http : HttpClient,
+    private router: Router,
+    private envService: EnvironmentService) { }
 
   logar = (usuario: Usuario): Observable<Usuario> =>
     this.http
-      .post<Usuario>(`${environment.api}/login`, usuario)
+      .post<Usuario>(`${this.envService.api}/login`, usuario)
       .pipe(tap((usuarioLogado: any) => {
         if (usuarioLogado == null)
           return

@@ -29,6 +29,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/assets/env.js",
+              "src/assets/env.template.js",
               {
                 "glob": "**/*",
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",

@@ -13,3 +13,5 @@ RUN npm run build --omit=dev
 # Baseado no nginx
 FROM nginx
 COPY --from=node /FaleMaisFront/dist/fale-mais-front /usr/share/nginx/html
+# Substitui env.js pelo env.template com a URL informada no env do docker
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
