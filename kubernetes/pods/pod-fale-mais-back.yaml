@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fale-mais-back
+  labels:
+    app: fale-mais-back
+spec:
+  containers:
+    - name: fale-mais-back
+      image: douglasaugustojunior/falemaisback:latest
+      ports:
+        - containerPort: 80
